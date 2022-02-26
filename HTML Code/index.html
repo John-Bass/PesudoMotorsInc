@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html>
+<!--head creates a name for the website document. (Displayed on browser tab)-->
+<head>
+    <title>My First Website</title>
+    <!--METADATA-->
+    <!--Unicode Utilization-->
+    <meta charset="UTF-8">
+    <!--Sets description of website-->
+    <meta name = "description" content = "Free HTML Tutorial for Beginners">
+    <!--Keywords for search engine optimization finding (IE Google)-->
+    <meta name = "keywords" content = "HTML, Tutorial, Beginners">
+    <!--Sets the author of the website-->
+    <meta name = "author" content = "John Bass">
+    <!--Sets the viewing of the browser to be accurate to the device the user is using-->
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <!--Sets up an automatic refresh of x seconds of the website-->
+    <meta http-equiv = "refresh" content = "100">
+</head>
+<!--Body changes the main website information-->
+<body>
+    I like PIZZA!
+    <!--Hx Represents different size "headers"-->
+    <h1>I like PIZZA!</h1>
+    <!--HR adds a horizontal break line to the website-->
+    <hr>
+    <h2>I like PIZZA!</h2>
+    <h3>I like PIZZA!</h3>
+    <!--BR adds a "break" or ENTER/Return to the website-->
+    <br>
+    <h4>I like PIZZA!</h4>
+    <h5>I like PIZZA!</h5>
+    <h6>I like PIZZA!</h6>
+
+
+
+    <br>
+    <!--p allows you to put text on the website-->
+    <p>This is some sample text</p>
+    <!--<lorem> then pressing tab creates a long, populated, sample text-->
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A aliquam autem ratione ea impedit libero error! Molestias praesentium, reprehenderit magni odio obcaecati perspiciatis tempore fugit nisi sed commodi earum enim.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque reprehenderit similique excepturi molestias tempora expedita, nemo aliquid reiciendis cum exercitationem cumque asperiores quis eaque dolorem aliquam magni possimus recusandae ullam.</p>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--HOW TO SETUP HYPERLINKS IN HTML WEBSITE
+        START WITH <a>-->
+    <!--href = site link, target = _self or _blank for using current tab or openining new tab-->
+    <!--title = What is said when hovering over link and Youtube is what it displays on page-->
+    <a href = "https://www.youtube.com" target = _blank title = "This takes you to Youtube."> 
+        Youtube 
+    </a>
+    <br>
+    <!--You can also set this up to goto another page you own-->
+    <!--To do this do name.html as link-->
+    <a href = "page2.html" target = _self title = "Click to Goto Page 2">
+        Go to Page 2
+    </a>
+    <br>
+    <!--You can also use this to email people like customer support-->
+    <a href = "mailto:emailAddressHere@gmail.com" target = _self title = "Email Customer Support">
+        Customer Support Email
+    </a>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--HOW TO ADD IMAGES 
+        START WITH <img>-->
+    <!--First - Place image into website folder. (IE HTML Code Folder in this case)-->
+    <!--Note: SRC = image source in folder / HEIGHT = image heigh and width scales propertionally / WIDTH = change width size-->
+    <!--If seeing impaired using screen reader, can use alt = "Description of image"-->
+    <!--TITLE adds a popup title of whatever is in quotes " xyz "-->
+    <!--You can also add <a> tag to allow clicking the image to take you to a website-->
+    <a href = "https://en.wikipedia.org/wiki/Honda_CBR_series" target = _blank>
+    <img src = "/images/cbr website image.jpg" height = "300" alt = "This is a CBR500R" title = "2022 CBR500R">
+    </a>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--HOW TO ADD AUDIO TO YOUR WEBSITE-->
+    <!--Use <audio> tag, using CONTROLS so you have control of audio, and SRC = location in website code folder-->
+    <!--Adding autoplay after controls will automatically play the music-->
+    <!--Adding muted after autoplay will play song, but without volume-->
+    <!--Adding loop will make song loop after end-->
+    <audio controls autoplay muted loop src = "Don't Wanna Let Myself Down - NEFFEX.mp3">
+    </audio>
+    <!--You can have nested audio sources in case a browser doesn't support one of them-->
+    <!--<audio attributesHere>
+            <source src = "Don't Wanna Let Myself Down - NEFFEX.mp3"
+            <source src = "Don't Wanna Let Myself Down - NEFFEX.wav"
+            This browser does not support HTML5 audio (This displays if audio unable to play)
+        </audio>-->
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--HOW TO ADD VIDEOS TO A WEBSITE (Needs to be of types MP4, WebM, or Ogg)
+        Start with <video>-->
+    <!--Can add same attributes from audio, like muted-->
+    <h3>This is a test video thus low quality</h3>
+    <video controls src = "sample-mp4-file-small.mp4" width = "400">
+        <!--Can add other sources EXACTLY like audio section-->
+    </video>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+    <!--TEXT FORMATTING TAGS-->
+    <p>This is normal text</p>
+    <p>This is <b>bold</b> text</p>
+    <p>This is <i>italic</i> text</p>
+    <p>This is <big>big</big> text</p>
+    <p>This is <small>small</small> text</p>
+    <p>This is <sub>subscript</sub> text</p>
+    <p>This is <sup>superscript</sup> text</p>
+    <p>This is <ins>inserted</ins> text</p>
+    <p>This is <deleted>deleted</deleted>> text</p>
+    <p>This is <mark>marked</mark> text</p>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--LISTS IN HTML-->
+    <!--You can also create sublists by adding <listType> under the <li>
+        I think you could also add the <a> stuff for listed items taking 
+        users to where you want to go. Might be a good idea?-->
+    <h4>Unordered List</h4>
+    <!--<ul> = unordered list
+        <li> = list item
+        These are just bullet points-->
+    <ul>
+        <li>Pizza Dough</li>
+        <li>Tomato Sauce</li>
+        <li>Cheese</li>
+        <li>Toppings</li>
+    </ul>
+
+    <h4>Ordered List</h4>
+    <!--<ol> = ordered list
+        <li> = list item
+        These are just labeled points TYPE = "1 or A or a etc for bullet points"-->
+    <ol type = "A">
+        <li>Wake Up</li>
+        <li>Eat</li>
+            <ul>
+                <li>Eggs</li>
+                <li>Bacon</li>
+                <li>Banana</li>
+            </ul>
+        <li>Sleep</li>
+    </ol>
+
+    <h4>Description List</h4>
+    <!--<dl> = description list
+        <dt> = description term
+        <dd> = description definition
+            -->
+    <dl>
+        <dt>HTML</dt>
+        <dd>This adds structure to a webpage</dd>
+        <dt>CSS</dt>
+        <dd>This adds style to a webpage</dd>
+        <dt>JavaScript</dt>
+        <dd>This adds functionality to a webpage</dd>
+    </dl>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--CREATING A TABLE IN HTML-->
+    <h3>Store Hours</h3>
+    <!--<table> starts the table element-->
+    <table bgcolor = "black" width = "700">
+        <!--<tr> starts a table row-->
+        <tr bgcolor = "grey">
+            <!--<th> is a table HEADER essentially a column-->
+            <th width = "100">Sunday</th>
+            <th width = "100">Monday</th>
+            <th width = "100">Tuesday</th>
+            <th width = "100">Wednesday</th>
+            <th width = "100">Thursday</th>
+            <th width = "100">Friday</th>
+            <th width = "100">Saturday</th>
+        </tr>
+        <tr bgcolor = "lightgrey" align = "center">
+            <!--<td> is table data-->
+            <td>Closed</td>
+            <td>9:00-5:00</td>
+            <td>9:00-5:00</td>
+            <td>9:00-5:00</td>
+            <td>9:00-5:00</td>
+            <td>9:00-5:00</td>
+            <td>Closed</td>
+        </tr>
+    </table>
+
+    <!--NOTE: bgcolor changes background color for said element. NOT NEEDED
+              th width changes to widith of table element. NOT NEEDED
+              table width multiply th width amount by th elements to create an aligned table
+              tr align = "center" just aligns those elements to the center instead of left or right alignment-->
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--ADDING COLOR TO A WEBPAGE-->
+    <!--You can change website background by applying same technique to the <body> element-->
+    <h1 style = "background-color:rgb(5, 240, 232); color: red">Red Color</h1>
+    <h1 style = "color:rgb(5, 240, 232)">RGB Color</h1>
+    <h1 style = "color: #28f005">Hexadecimal Color</h1>
+
+    <p style = "background-color: red; color:rgb(5, 240, 232)">Sample Text That Is A Different Color</p>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--USING DIV IN MULTIPLE PARAGRAPHS-->
+    <div style = "background-color: rgb(5, 240, 232);">
+    <!--USING SPAN IN PARAGRAPHS-->
+    <p><span style = "color: red">This is sample text.</span> This sentence sample text will be different than the first sentence.</p>
+    <p><span style = "color: red">This is sample text.</span> This sentence sample text will be different than the first sentence.</p>
+    <p><span style = "color: red">This is sample text.</span> This sentence sample text will be different than the first sentence.</p>
+    </div>
+    
+    <!--Span = Adds markup to a text of portion of a document-->
+    <!--Div  = Defines a division of a document-->
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--IFRAME = Embed content from another source into an HTML document.
+        ex. Used for ads, used in many hacking techniques-->
+    <iframe style = "border:0" src = "https://www.bing.com" width = "750" height = "250"></iframe>
+    <br>
+    <iframe style = "border:0" src = "ad.html" width = "750" height = "100"></iframe>
+
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!--HOW TO CREATE BUTTONS IN HTML-->
+    <button style = "border-radius:5px">Click Me</button>
+    <!--Button that takes you to a website-->
+    <a href = "https://www.youtube.com">
+        <button style = "background-color: cadetblue; border-radius:5px">Youtube Button</button>
+    </a>
+
+
+
+</body>
+
+</html>
