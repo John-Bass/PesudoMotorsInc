@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Sets description of website-->
+    <meta name = "description" content = "Pesudo Motors Inc Dealer Website">
+    <!--Keywords for search engine optimization finding (IE Google)-->
+    <meta name = "keywords" content = "Cars, Engines, Parts, Vehicles, Trucks, Dealership">
+    <!--Sets the author of the website-->
+    <meta name = "author" content = "John Bass">
+    <title>Pesudo Motors Inc</title>
+</head>
+<body style = "background-color: lightslategrey;">
+    <h1>Login Page</h1>
+    <a href = "index.html">
+        <button name = "home_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Home
+        </button>
+    </a>
+    <a href = "login.html">
+        <button name = "login_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Login
+        </button>
+    </a>
+    <a href = "browse.html">
+        <button name = "browse_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Browse
+        </button>
+    </a>
+    <a href = "quote.html">
+        <button name = "quote_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Quotes
+        </button>
+    </a>
+    <a href = "order.html">
+        <button name = "order_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Order
+        </button>
+    </a>
+    <a href = "payment.html">
+        <button name = "payment_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Payment
+        </button>
+    </a>
+
+    <br>
+    <hr>
+
+    <!--WE NEED THE PHP FILE FOR THIS-->
+    <div>
+    <form style = color:white action = "action_page.php" method = "POST">
+
+        <h3>Sign Up</h3>
+        <div>
+            <label for = "email">
+                Email:
+            </label>
+            <input type = "email" id = "email" name = "userEmail" placeholder = "J_Smith@xyz.com">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "phone">
+                Phone #:
+            </label>
+            <input type = "tel" id = "phone" name = "userPhoneNumber" placeholder = "(123)-456-7890">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "bday">
+                Birthdate:
+            </label>
+            <input type = "date" id = "bday" name = "birthDate">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "fname">
+                First Name:
+            </label>
+            <input required type = "text" id = "fname" name = "firstName" placeholder = "John">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "lname">
+                Last Name:
+            </label>
+            <input required type = "text" id = "lname" name = "lastName" placeholder = "Smith">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "passWord">
+                Password:
+            </label>
+            <input type = "password" id = passWord name = "userPassword" maxlength = "12" placeholder = "12 Characters Max">
+        </div>
+
+        <br>
+
+        <!--NEED PARAMETERS FOR ENSURING CARD NUMBER LENGTH IS PROPER-->
+        <div>
+            <label for = "cardnumber">
+                Card Number:
+            </label>
+            <input type = "number" id = "cardnumber" name = "userCardNumber" min = "0" placeholder = "XXXX XXXX XXXX XXXX">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "securitynumber">
+                Security Number:
+            </label>
+            <input type = "number" id = "securitynumber" name = "userSecurityNumber" min = "0" max = "999" placeholder = "123">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "payment">
+                Card Type:
+            </label>
+            <select id = "payment" name = "userPayment">
+                <option value = "visa">
+                    Visa
+                </option>
+                <option value = "mastercard">
+                    MasterCard
+                </option>
+                <option value = "giftcard">
+                    GiftCard
+                </option>
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <input type = "reset"></intput>
+        </div>
+        <div>
+            <input type = "submit"></input>
+        </div>
+        <hr>
+    </form>
+</body>
