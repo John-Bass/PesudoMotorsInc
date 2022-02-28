@@ -12,14 +12,90 @@
     <meta name = "author" content = "John Bass">
     <title>Pesudo Motors Inc</title>
 </head>
-<body>
+<body style = "background-color: lightslategrey;">
     <h1>Login Page</h1>
-    <ul>
-        <li>Login</li>
-        <li><a href = "browse.html" target = _self title = "Browse Catalog">Browse</a></li>
-        <li><a href = "quote.html" target = _self title = "Get Quote">Quote</a></li>
-        <li><a href = "order.html" target = _self title = "Order Information">Order</a></li>
-        <li><a href = "payment.html" target = _self title = "Payment Information">Payment</a></li>
-    </ul>
+    <a href = "index.html">
+        <button name = "home_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Home
+        </button>
+    </a>
+    <a href = "login.html">
+        <button name = "login_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Login
+        </button>
+    </a>
+    <a href = "browse.html">
+        <button name = "browse_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Browse
+        </button>
+    </a>
+    <a href = "quote.html">
+        <button name = "quote_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Quotes
+        </button>
+    </a>
+    <a href = "order.html">
+        <button name = "order_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Order
+        </button>
+    </a>
+    <a href = "payment.html">
+        <button name = "payment_button" type = "button" style = "background-color: white; border-radius:5px; color:black">
+            Payment
+        </button>
+    </a>
+
+    <br>
+    <hr>
+
+    <div>
+        <a href = "signup.html">
+            <button style = "background-color: white; border-radius:5px; color:black">
+                Sign Up
+            </button>
+        </a>
+    <!--WE NEED THE PHP FILE FOR THIS-->
+    <form style = color:white action = "action_page.php" method = "POST">
+        <h3>
+            Login
+        </h3>
+
+        <div>
+            <label for = "email">
+                Email:
+            </label>
+            <input type = "email" id = "email" name = "userEmail" placeholder = "J_Smith@xyz.com">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "phone">
+                Phone #:
+            </label>
+            <input type = "tel" id = "phone" name = "userPhoneNumber" placeholder = "(123)-456-7890" minlength = "10" maxlength = "10">
+        </div>
+
+        <br>
+
+        <div>
+            <label for = "passWord">
+                Password:
+            </label>
+            <input type = "password" id = passWord name = "userPassword" minlength = "5" maxlength = "12" placeholder = "12 Characters Max">
+        
+            <br>
+
+            <div>
+                <input type = "reset"></intput>
+            </div>
+            <div>
+                <input type = "submit"></input>
+            </div>
+
+        </div>
+        <hr>
+    </form>
+
 </body>
 </html>
