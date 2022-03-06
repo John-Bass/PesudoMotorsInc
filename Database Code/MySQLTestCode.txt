@@ -1,0 +1,626 @@
+/*
+Datatypes:
+INT            - Whole Numbers
+DECIMAL(10,4)  - Decimal Numbers (10 total digits with 4 after decimal.)
+VARCHAR(x)     - String of text of length of x
+BLOB           - Binary Large Object, stores large data
+DATE           - 'YYYY-MM-DD'
+TIMESTAMP      - 'YYYY-MM-DD HH:MM:SS'
+--------------------------------------------------------------------------------
+Tables:
+CREATE TABLE nameOfTable ();   //Creates a table and inside (); you place the columns
+DESCRIBE nameOfTable 		   //Displays the table information (NOT THE VALUES WITHIN THE TABLE ITSELF)
+DROP TABLE nameOfTable         //Deletes the table of specified name
+ALTER TABLE nameOfTable ADD nameOfNewColumn dataTypeOfNewColumn   //Adds a new column to an already created table
+ALTER TABLE nameOfTable DROP nameOfColumn 	                      //Deletes a column from table
+---------------------------------------------------------------------------------
+Columns in Tables:
+varName DATATYPE NOT NULL,  //This means this variable can never be NULL in the table
+varName DATATYPE UNIQUE,    //This means that no other value in this column can be the same
+PRIMARY KEY (varName),      //This means NOT NULL and UNIQUE technically
+varName DATATYPE DEFAULT 'Desired TEXT here',  //This means whatever is in ' ' will be the value in the table if nothing is present
+varName INT AUTO_INCREMENT                     //This means the data will be automatically incremented by 1 for each row
+---------------------------------------------------------------------------------
+Inserting Data:
+INSERT INTO nameOfTable VALUES (1, 'Jack', 'Biology'); //The values inserted inside () must follow the tables columns (first to last)
+INSERT INTO nameOfTable(names, of, columns, inserting) VALUES (values, for, selected, columns);
+---------------------------------------------------------------------------------
+Reading Tables:
+SELECT * FROM nameOfTable;     //This will display all the information within the selected table.
+---------------------------------------------------------------------------------
+Updating and Deleting Rows:
+UPDATE nameOfTable SET major = 'bio' WHERE major = 'Biology';  //Updates the table's information
+UPDATE nameOfTable SET major = 'Biochemistry' WHERE major = 'Biology' OR major = 'Chemistry';  //OR logic used
+//The above two updates are described in generics below for understanding
+UPDATE nameOfTable set columnName = thisIsNewValue WHERE columnName = thisIsOldValue;
+UPDATE nameOfTable set columnName = thisIsNewValue WHERE columnName = thisIsOldValue OR columnName = thisIsOldValueOfDifferentValue;
+//The above update changes the data of columnName's old values 'x' or 'y' to be the new value
+
+UPDATE nameOfTable SET name = 'Tom', major = 'Undecided' WHERE student_id = 1;
+GENERIC
+UPDATE nameOfTable SET columnOne = newValueColumnOne, columnTwo = newValueColumnTwo WHERE columnWhereThisChangeTakesPlace = valueThisTakesPlaceAt
+
+UPDATE nameOfTable SET major = 'Undecided';  //This would change ALL rows to a major of 'Undecided'
+GENERIC
+UPDATE nameOfTable SET columnWantedChanged = newValueForAllValuesInThisColumn;
+
+---
+DELETE FROM nameOfTable;   //Deletes all rows of data from the table. (Does not delete the table itself)
+DELETE FROM nameOfTable WHERE student_id = 5;  //Deletes the information from a particular row.
+GENERIC
+DELETE FROM nameOfTable WHERE columnDesired = valueOfDesiredRowDeletions;  //Thus, any rows of columnDesired with value of valueDesired will be deleted
+
+*/
+
+CREATE TABLE Student 
+(
+	student_id INT,
+    name VARCHAR(20),
+    major VARCHAR(20),
+    PRIMARY KEY(student_id)
+);
+/*Easier Version*/
+CREATE TABLE student 
+(
+	student_id INT AUTO_INCREMENT,
+    name VARCHAR(20),
+    major VARCHAR(20),
+    PRIMARY KEY(student_id)
+);
+
+DESCRIBE student;
+DROP TABLE student;
+ALTER TABLE student ADD gpa DECIMAL(3,2);
+ALTER TABLE student DROP gpa;
+INSERT INTO student VALUES(2, 'Kate', 'Sociology');
+INSERT INTO student(student_id, name) VALUES (3, 'Claire');
+SELECT * FROM student;
+
+/*Easier Version Insertions*/
+INSERT INTO student(name, major) VALUES ('Jack', 'Biology');
+INSERT INTO student(name, major) VALUES ('Kate', 'Sociology');
+INSERT INTO student(name, major) VALUES ('Claire', 'Chemistry');
+INSERT INTO student(name, major) VALUES ('Jack', 'Biology');
+INSERT INTO student(name, major) VALUES ('Mike', 'Computer Science');
+
+UPDATE student
+SET major = 'Bio'
+WHERE major = 'Biology';
+
+UPDATE student
+SET major = 'Biochemistry'
+WHERE major = 'Bio' OR major = 'Chemistry';
+
+UPDATE student
+SET name = 'Tom', major = 'Undecided'
+WHERE student_id = 1;
+
+UPDATE student 
+SET major = 'Undecided';
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+MORE COMPLICATED EXAMPLE by MIKE DANE SQL TUTORIAL
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+CREATE DATABASE SQLTutorial;
+
+/*
+Creating Complex SQL Database
+*/
+/**/
+
+/*
+This employee table houses two foreign keys, super and branch_id, but their coresponding tables have yet to be created.
+Thus, you keep their appereance in employee as if they were just a part of the employee table alone. (Altered later)
+*/
+CREATE TABLE employee
+(
+	emp_id INT PRIMARY KEY,
+    first_name VARCHAR(40),
+    last_name VARCHAR(40),
+    birth_day DATE,
+    sex VARCHAR(1),
+    salary INT,
+    super_id INT,
+    branch_id INT
+);
+
+/*
+This branch table houses a foreign key, mgr_id, which coresponds to the emp_id of the employee table. Since the employee table 
+exists at this point, you can enter the mgr_id as a foreign key without issues. 
+
+(Note: ON DELETE SET NULL and CASCADE will be explained later on.)
+*/
+CREATE TABLE branch 
+(
+  branch_id INT PRIMARY KEY,
+  branch_name VARCHAR(40),
+  mgr_id INT,
+  mgr_start_date DATE,
+  FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL
+);
+
+/*
+This alters the employee table, specifically it is setting the branch_id in the employee table as a foreign key to the branch
+table since that table now exists. The same principle applies to the second alteration of the employee table as well.
+*/
+ALTER TABLE employee
+ADD FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL;
+
+ALTER TABLE employee
+ADD FOREIGN KEY(super_id) REFERENCES employee(emp_id) ON DELETE SET NULL;
+
+/*
+This creates the clients table with associated columns, and sets the branch_id found within this table as a foreign key to the branch
+table, specifically the branch.branch_id.
+*/
+CREATE TABLE clients
+(
+	client_id INT PRIMARY KEY,
+    client_name VARCHAR(40),
+    branch_id INT,
+    FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL
+);
+
+/*
+This creates the works_with table. This table is unique because it has a composite PRIMARY KEY that utilizes emp_id and client_id. 
+Also, these primary keys also represent foreign keys to two other tables, employee and clients.
+
+(NOTE: ON DELETE CASCADE and SET NULL will be explained later on.)
+*/
+CREATE TABLE works_with
+(
+	emp_id INT,
+    client_id INT,
+    total_sales INT,
+    PRIMARY KEY(emp_id, client_id),
+    FOREIGN KEY(emp_id) REFERENCES employee(emp_id) ON DELETE CASCADE,
+    FOREIGN KEY (client_id) REFERENCES clients(client_id) ON DELETE CASCADE
+);
+
+/*
+This creates the branch_supplier table. This table also houses a composite PRIMARY KEY utilizing branch_id and supplier_id. 
+Also, one of the primary keys, branch_id, is also a foreign key to the branch table specifically branch.branch_id. 
+
+(NOTE: Unconfirmed, but it seems like if you have a primary key that is also a foreign key in the table, then that 
+is when you use ON DELETE CASCADE. If you just have a foreign key, that is not also a PRIMARY KEY, then you use 
+ON DELETE SET NULL instead.)
+*/
+CREATE TABLE branch_supplier
+(
+	branch_id INT,
+    supplier_name VARCHAR(40),
+    supply_type VARCHAR(40),
+    PRIMARY KEY(branch_id, supplier_name),
+    FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE
+);
+
+/*
+ENTERING IN THE DATA!
+This must be done a speicific way since these tables have foreign keys to each other. 
+
+
+CORPORATE BRANCH EMPLOYEES
+*/
+/*
+Values are entered according to the column entries originally created for the employee table.
+Notice that the branch_id is set to NULL because we have yet to create that data as of this moment. 
+(NOTE: super_id is set to NULL ONLY BECAUSE even though this is a foreign key David Wallace does not have a super_id in the data we're entering.
+*/
+INSERT INTO employee VALUES (100, 'David', 'Wallace', '1967-11-17', 'M', 250000, NULL, NULL);
+
+/*
+Values are still entered according to the column entries originally created for the branch table.
+Notice that the foreign key, mgr_id, is set to 100 since that is referencing the data we populated for employee.emp_id of 100. 'David Wallace'.
+(NOTE: The only reason we use mgr_id/emp_id of 100 here is because in this instance the mgr is the same as the guy we entered into the employee table.)
+*/
+INSERT INTO branch VALUES (1, 'Corporate', 100, '2006-02-09');
+
+/*
+Updating employee table for emp_id of 100 because when we originally populated that data entry, we did not have the branch_id data populated yet.
+Thus, since we not have that data ready to go, we go back and update that original NULL position.
+(NOTE: This process could be done the other way around, starting at branch ending at employee, but the same update would have to be made but just slightly altered.)
+*/
+UPDATE employee
+SET branch_id = 1
+WHERE emp_id = 100;
+
+/*
+This insert is representative of how to insert employee values after the branch data has been populated for their branch_id value.
+(NOTE: If an employee works for a different branch than ONE, ie TWO OR THREE, then you would have to repeat the steps above to do so.)
+*/
+INSERT INTO employee VALUES (101, 'Jan', 'Levinson', '1961-05-11', 'F', 110000, 100, 1); 
+
+
+/*
+SCRATON BRANCH EMPLOYEES
+*/
+INSERT INTO employee VALUES(102, 'Michael', 'Scott', '1964-03-15', 'M', 75000, 100, NULL);
+
+INSERT INTO branch VALUES(2, 'Scranton', 102, '1992-04-06');
+
+UPDATE employee
+SET branch_id = 2
+WHERE emp_id = 102;
+
+INSERT INTO employee VALUES(103, 'Angela', 'Martin', '1971-06-25', 'F', 63000, 102, 2);
+INSERT INTO employee VALUES(104, 'Kelly', 'Kapoor', '1980-02-05', 'F', 55000, 102, 2);
+INSERT INTO employee VALUES(105, 'Stanley', 'Hudson', '1958-02-19', 'M', 69000, 102, 2);
+
+/*
+STAMFORD BRANCH EMPLOYEES
+*/
+INSERT INTO employee VALUES(106, 'Josh', 'Porter', '1969-09-05', 'M', 78000, 100, NULL);
+
+INSERT INTO branch VALUES(3, 'Stamford', 106, '1998-02-13');
+
+UPDATE employee
+SET branch_id = 3
+WHERE emp_id = 106;
+
+INSERT INTO employee VALUES(107, 'Andy', 'Bernard', '1973-07-22', 'M', 65000, 106, 3);
+INSERT INTO employee VALUES(108, 'Jim', 'Halpert', '1978-10-01', 'M', 71000, 106, 3);
+
+
+/*
+Now that we have all the employee and branch information populated, the other tables that use these as foreign keys will have no
+problem with the information just being easily inserted into their tables. Otherwise, you would have to work around the foreign keys
+and populate data as above if this happened to not be the case.
+*/
+/*
+BRANCH SUPPLIER DATA
+*/
+INSERT INTO branch_supplier VALUES(2, 'Hammer Mill', 'Paper');
+INSERT INTO branch_supplier VALUES(2, 'Uni-ball', 'Writing Utensils');
+INSERT INTO branch_supplier VALUES(3, 'Patriot Paper', 'Paper');
+INSERT INTO branch_supplier VALUES(2, 'J.T. Forms & Labels', 'Custom Forms');
+INSERT INTO branch_supplier VALUES(3, 'Uni-ball', 'Writing Utensils');
+INSERT INTO branch_supplier VALUES(3, 'Hammer Mill', 'Paper');
+INSERT INTO branch_supplier VALUES(3, 'Stamford Lables', 'Custom Forms');
+
+/*
+CLIENT DATA
+*/
+INSERT INTO clients VALUES(400, 'Dunmore Highschool', 2);
+INSERT INTO clients VALUES(401, 'Lackawana Country', 2);
+INSERT INTO clients VALUES(402, 'FedEx', 3);
+INSERT INTO clients VALUES(403, 'John Daly Law, LLC', 3);
+INSERT INTO clients VALUES(404, 'Scranton Whitepages', 2);
+INSERT INTO clients VALUES(405, 'Times Newspaper', 3);
+INSERT INTO clients VALUES(406, 'FedEx', 2);
+
+/*
+WORKS WITH DATA
+*/
+INSERT INTO works_with VALUES(105, 400, 55000);
+INSERT INTO works_with VALUES(102, 401, 267000);
+INSERT INTO works_with VALUES(108, 402, 22500);
+INSERT INTO works_with VALUES(107, 403, 5000);
+INSERT INTO works_with VALUES(108, 403, 12000);
+INSERT INTO works_with VALUES(105, 404, 33000);
+INSERT INTO works_with VALUES(107, 405, 26000);
+INSERT INTO works_with VALUES(102, 406, 15000);
+INSERT INTO works_with VALUES(105, 406, 130000);
+
+/*
+Checking that the data in all the tables is populated correctly.
+*/
+SELECT * FROM employee;
+SELECT * FROM branch;
+SELECT * FROM clients;
+SELECT * FROM works_with;
+SELECT * FROM branch_supplier;
+
+
+
+---------------------------------------------------------------------------
+SQL TUTORIAL VIDEO 13 - MORE BASIC QUERIES SQL
+---------------------------------------------------------------------------
+
+
+
+
+
+/*Find ALL employees*/
+SELECT *
+FROM employee;
+
+/*Find ALL clients*/
+SELECT *
+FROM clients;
+
+/*Find all employees ORDERED BY salary*/
+SELECT *
+FROM employee
+ORDER BY salary DESC;
+
+/*Find all employees ORDERED BY sex AND THEN name*/
+SELECT *
+FROM employee
+ORDER BY sex, first_name, last_name;
+
+/*Find the FIRST 5 employees in the table*/
+SELECT *
+FROM employee
+LIMIT 5;
+
+/*Find the first and last names of ALL employees*/
+SELECT first_name, last_name
+FROM employee;
+
+/*Find the forename and surnames of all employees*/
+/*
+NOTE: This changes the displayed column name to that of the AS varDisplayedName
+*/
+SELECT first_name AS forename, last_name AS surname
+FROM employee;
+
+/*Find out all the different genders*/
+/*
+DISTINCT KEYWORD
+*/
+SELECT DISTINCT sex
+FROM employee;
+
+/*Find out all the different branches*/
+SELECT DISTINCT branch_name
+FROM branch;
+
+
+
+
+
+
+/*
+FUNCTIONS IN SQL
+*/
+
+
+
+
+
+/*
+COUNT FUNCTION
+*/
+/*Find the number of employees*/
+/*Displays the amount, in an integer*/
+SELECT COUNT(emp_id)
+FROM employee;
+
+SELECT COUNT(super_id)
+FROM employee;
+
+/*Find the number of female employees born after 1970*/
+SELECT COUNT(emp_id)
+FROM employee
+WHERE sex = 'F' AND birth_day > '1971-01-01';
+
+
+
+
+/*
+AVERAGE FUNCTION
+*/
+/*Find the average of all employee's salaries*/
+SELECT AVG(salary)
+FROM employee;
+
+/*Find the average of all MALE employee's salaries*/
+SELECT AVG(salary)
+FROM employee
+WHERE sex = 'M';
+
+
+
+
+/*
+SUM FUNCTION
+*/
+/*Find the SUM of all employee's salaries*/
+SELECT SUM(salary)
+FROM employee;
+
+
+
+
+/*
+AGGREGATION OF INFORMATION (DISPLAYS)
+*/
+/*Find out how many males and females there are*/
+SELECT COUNT(sex), sex
+FROM employee
+GROUP BY sex;
+
+/*Find the total sales of each salesman*/
+SELECT SUM(total_sales), emp_id
+FROM works_with
+GROUP BY emp_id;
+
+/*Find the total sales to each client*/
+SELECT SUM(total_sales), client_id
+FROM works_with
+GROUP BY client_id;
+
+
+
+
+
+
+/*
+WILDCARDS AND THE LIKE KEYWORD IN SQL
+*/
+
+
+
+/* % = any # characters, _ = one character*/
+
+
+
+/*Find any client's who are an LLC*/
+/*
+NOTE: '%LLC' means that any number of characters can come before the LLC, but the line MUST END in LLC
+*/
+SELECT *
+FROM clients
+WHERE client_name LIKE '%LLC';
+
+/*Find any branch suppliers who are in the label business*/
+SELECT *
+FROM branch_supplier
+WHERE supplier_name LIKE '% Label%';
+
+/*Find any employee born in October*/
+/*
+NOTE: Since bday is set as yyyy-mm-dd then four "_" and then a - is all that's needed to find the month PLUS the % because we don't care about
+anything after the 10. 
+Also, you could just put five "_" instead of the dash and it will still work.
+*/
+SELECT *
+FROM employee
+WHERE birth_day LIKE '____-10%';
+
+/*Find any clients who are schools*/
+SELECT *
+FROM clients
+WHERE client_name LIKE '%school%';
+
+
+
+
+
+
+/*
+UNION SQL TUTORIAL VIDEO 16
+*/
+
+/*Find a list of employee and branch names*/
+/*
+NOTE: Must have the same number of columns (IE fName and bName represent 1 and 1)
+NOTE: Must also be of the same datatype
+*/
+SELECT first_name
+FROM employee
+UNION
+SELECT branch_name
+FROM branch;
+
+/*Shows you can have even more UNIONS*/
+SELECT first_name
+FROM employee
+UNION
+SELECT branch_name
+FROM branch
+UNION
+SELECT client_name
+FROM clients;
+
+/*Shows that you can change the column name using the AS keyword*/
+SELECT first_name AS Company_Names
+FROM employee
+UNION
+SELECT branch_name
+FROM branch
+UNION
+SELECT client_name
+FROM clients;
+
+
+/*Find a list of all clients and branch suppliers' names*/
+SELECT client_name
+FROM clients
+UNION
+SELECT supplier_name
+FROM branch_supplier;
+
+/*Both have branch_id associated with their respective names*/
+SELECT client_name, clients.branch_id
+FROM clients
+UNION
+SELECT supplier_name, branch_supplier.branch_id
+FROM branch_supplier;
+
+
+/*Find a list of all money spent or earned by the company*/
+SELECT salary
+FROM employee
+UNION
+SELECT total_sales
+FROM works_with;
+
+/*Now add the client and employee id. NOTE: The second column name will just be labeled as emp_id*/
+SELECT salary, emp_id
+FROM employee
+UNION
+SELECT total_sales, client_id
+FROM works_with;
+
+
+
+
+
+
+
+/*
+JOINS IN SQL TUTORIAL VIDEO 17
+*/
+/*Added to show JOINS*/
+INSERT INTO branch VALUES(4, 'Buffalo', NULL, NULL);
+
+/*Find all branches and the names of their managers*/
+/*
+NOTE: emp_id and mgr_id are related since same "numbers" because they both represent employees.
+NOTE: The ON keyword is used on the related column that the two have in common. In this case it is the emp_id and the mgr_id
+both representing employees from the employee table. Thus, when those two related columns house the same info, then that info is selected
+and displayed in the output.
+*/
+/*
+JOIN OPERATION
+*/
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+JOIN branch
+ON employee.emp_id = branch.mgr_id;
+
+/*
+NOTE: You can use the AS keyword to rename the SELCETED column names to display a different selected name on the displayed table.
+*/
+SELECT employee.emp_id AS Manager, employee.first_name AS MGR_Name, branch.branch_name AS Branch
+FROM employee
+JOIN branch
+ON employee.emp_id = branch.mgr_id;
+
+
+/*
+LEFT JOIN OPERATION
+
+NOTE: With a left join you include ALL of the ROWS from the left table. (AKA the FROM table)
+*/
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+LEFT JOIN branch
+ON employee.emp_id = branch.mgr_id;
+
+
+
+/*
+RIGHT JOIN OPERATION
+
+NOTE: With a right join you include ALL of the ROWS from the right table. (AKA the table after the keywords RIGHT JOIN)
+*/
+SELECT employee.emp_id, employee.first_name, branch.branch_name
+FROM employee
+RIGHT JOIN branch
+ON employee.emp_id = branch.mgr_id;
+
+
