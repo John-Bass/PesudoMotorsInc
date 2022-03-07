@@ -1,4 +1,5 @@
-
+/*Run the create database first, then delete the create database line. Then Run the whole query and it will create all the tables.*/
+CREATE DATABASE PseudoMotorsInc;
 CREATE TABLE customer
 (
 	user_id INT AUTO_INCREMENT,
