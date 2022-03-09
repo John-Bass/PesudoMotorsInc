@@ -1,3 +1,5 @@
+/*Do create database first, then delete create database and run the rest of the code*/
+CREATE DATABASE pseudomotorsinc;
 
 CREATE TABLE customer
 (
