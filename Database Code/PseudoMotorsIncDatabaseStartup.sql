@@ -300,20 +300,13 @@ CREATE TABLE salesRecordForVehicles
     user_id INT, 
     dealer_id INT,
     vehicle_vin INT,
-    /*Maybe set up a tax for each state?*/
-    totalCost INT
+    DOS DATE,
+
     
     PRIMARY KEY(salesRecord_id, vehicle_vin),
-    FOREIGN KEY(vehicle_vin) REFERENCES ourCompanysVehicles(vehicle_vin) ON DELETE CASCADE
-);
-
-CREATE TABLE customerVehicles
-(
-	user_vehicleVin INT,          													
-	user_id INT,																		
-    PRIMARY KEY(user_vehicleVin),
-    FOREIGN KEY(user_id) REFERENCES customer(user_id) ON DELETE CASCADE,
-    FOREIGN KEY(user_vehicleVin) REFERENCES vehicleInformationNumber(vehicle_vin) ON DELETE SET NULL
+    FOREIGN KEY(vehicle_vin) REFERENCES ourCompanysVehicles(vehicle_vin) ON DELETE CASCADE,
+    FOREIGN KEY(user_id) REFERENCES customers(user_id) ON DELETE SET NULL,
+    FOREIGN KEY(dealer_id) REFERENCES dealers(dealer_id) ON DELETE SET NULL
 );
 
 
