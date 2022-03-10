@@ -193,3 +193,135 @@ WHERE vehicle_make = 'Ford' AND vehicle_model = 'F-150' AND vehicle_engineSize =
 
 
 
+
+
+
+
+
+
+
+
+
+CREATE TABLE suppliers
+(
+	supplier_id INT AUTO_INCREMENT,               	 	/*ID that supplier will be known by*/
+    supplier_name VARCHAR(15),                     		/*Name of supplier                 */
+    
+    PRIMARY KEY(supplier_id)
+);
+
+CREATE TABLE products
+(
+	supplier_id INT,									/*ID that supplier is known by*/
+    supplier_productId INT AUTO_INCREMENT,              /*ID to identify products     */
+    supplier_productName VARCHAR(15),					/*Product Name, IE Doors, windshield, etc VERY VERY GENERIC NAMING*/
+    supplier_productPrice INT,							/*Price of product*/
+    supplier_DOP DATE,          						/*Date of Production, so if there is an issue with product we can find those who bought it*/
+    
+    PRIMARY KEY(supplier_id, supplier_productId),
+    FOREIGN KEY(supplier_id) REFERENCES suppliers(supplier_id) ON DELETE CASCADE
+);
+
+CREATE TABLE manufacturers
+(
+	manufacturer_id INT AUTO_INCREMENT,					/*ID that manufacturer will be known by */
+    manufacturer_name VARCHAR(15),						/*Name of manufacturer				   	*/
+    
+    PRIMARY KEY(manufacturer_id)
+);
+
+CREATE TABLE manufacturerModels
+(
+	manufacturer_id INT,
+	vehicle_vin INT AUTO_INCREMENT,						/*Unique identifier for every vehicle*/
+    vehicle_price INT,
+    vehicle_DOP DATE NOT NULL,               			/*DATE OF PRODUCTION in case a callback is needed*/
+	vehicle_make VARCHAR(15) NOT NULL,            		/*Make of this UNIQUE vehicle  */
+    vehicle_model VARCHAR(15) NOT NULL,           		/*Model of this UNIQUE vehicle */    
+    vehicle_year INT NOT NULL,                    		/*Year of this UNIQUE vehicle  */
+    vehicle_color VARCHAR(10) UNIQUE NOT NULL,			/*Color of this UNIQUE vehicle */
+    vehicle_engineSize VARCHAR(2) NOT NULL,       		/*Engine Size: V4, V6, V8      */
+    vehicle_transmission VARCHAR(4) NOT NULL,           /*Transmission: AUTO or MANU   */
+    
+    PRIMARY KEY(vehicle_vin),
+    FOREIGN KEY(manufacturer_id) REFERENCES manufacturers(manufacturer_id) ON DELETE CASCADE
+);
+
+CREATE TABLE ourCompanyVehicles
+(
+	manufacturer_id INT,
+	vehicle_vin INT,									/*Unique identifier for every vehicle  */
+    vehicle_classification VARCHAR(15),					/*Ex. TRUCK, CAR, Convertable, SUV etc This way we can group vehicles when showing users*/
+    vehicle_DOP DATE NOT NULL,               			/*DATE OF PRODUCTION: in case a callback is needed			 */
+    vehicle_DOA DATE NOT NULL,							/*DATE OF ACQUISITION: so we know when we bought the vehicle  */
+    vehicle_DOS DATE,									/*DATE OF SALE: so we know when we sell the vehicle           */
+	vehicle_make VARCHAR(15) NOT NULL,            		/*Make of this UNIQUE vehicle  */
+    vehicle_model VARCHAR(15) NOT NULL,           		/*Model of this UNIQUE vehicle */    
+    vehicle_year INT NOT NULL,                    		/*Year of this UNIQUE vehicle  */
+    vehicle_color VARCHAR(10) UNIQUE NOT NULL,			/*Color of this UNIQUE vehicle */
+    vehicle_engineSize VARCHAR(2) NOT NULL,       		/*Engine Size: V4, V6, V8      */
+    vehicle_transmission VARCHAR(4) NOT NULL,           /*Transmission: AUTO or MANU   */
+    
+    PRIMARY KEY(vehicle_vin),
+    FOREIGN KEY(manufacturer_id) REFERENCES manufacturers(manufacturer_id) ON DELETE SET NULL,
+    FOREIGN KEY(vehicle_vin) REFERENCES manufacturers(vehicle_vin) ON DELETE CASCADE
+);
+
+CREATE TABLE dealers
+(
+	dealer_id INT AUTO_INCREMENT,
+    dealer_name VARCHAR(15),
+    
+    PRIMARY KEY(dealer_id)
+);
+
+CREATE TABLE customers
+(
+	user_id INT AUTO_INCREMENT,																		
+    user_userName VARCHAR(40) UNIQUE NOT NULL,         																
+    user_password VARCHAR(12) NOT NULL,																		
+    firstName VARCHAR(20) NOT NULL,															
+    lastName VARCHAR(20) NOT NULL,
+    DOB DATE NOT NULL,
+    gender VARCHAR(1) NOT NULL,                        
+    income INT NOT NULL,							   
+    address VARCHAR(40) NOT NULL,			
+    state VARCHAR(2) NOT NULL,
+    email VARCHAR(60) UNIQUE NOT NULL,																					
+    phone VARCHAR(15) NOT NULL,	
+    
+    PRIMARY KEY(user_id)
+);
+
+
+CREATE TABLE salesRecordForVehicles
+(
+	salesRecord_id INT AUTO_INCREMENT,
+    user_id INT, 
+    dealer_id INT,
+    vehicle_vin INT,
+    /*Maybe set up a tax for each state?*/
+    totalCost INT
+    
+    PRIMARY KEY(salesRecord_id, vehicle_vin),
+    FOREIGN KEY(vehicle_vin) REFERENCES ourCompanysVehicles(vehicle_vin) ON DELETE CASCADE
+);
+
+CREATE TABLE customerVehicles
+(
+	user_vehicleVin INT,          													
+	user_id INT,																		
+    PRIMARY KEY(user_vehicleVin),
+    FOREIGN KEY(user_id) REFERENCES customer(user_id) ON DELETE CASCADE,
+    FOREIGN KEY(user_vehicleVin) REFERENCES vehicleInformationNumber(vehicle_vin) ON DELETE SET NULL
+);
+
+
+/*How do we set up an order or sales record based off the information already present?*/
+
+
+
+
+
+
+
