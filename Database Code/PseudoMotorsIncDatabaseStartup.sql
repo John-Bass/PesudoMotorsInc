@@ -1,281 +1,7 @@
-/*Do create database first, then delete create database and run the rest of the code*/
+/*Do this first line initially then delete the first line and run the entirety of the rest of the code.*/
 CREATE DATABASE pseudomotorsinc;
 
-CREATE TABLE customer
-(
-	user_id INT AUTO_INCREMENT,																		
-    user_userName VARCHAR(40),         																 /*UNIQUE & NOT NULL UserName*/
-    user_password VARCHAR(12),																		 /*NOT NULL password*/
-    firstName VARCHAR(20),															/*NOT NULL lName, fName, DOB, address, state, phone*/
-    lastName VARCHAR(20),
-    DOB DATE,
-    address VARCHAR(40),			
-    state VARCHAR(2),
-    email VARCHAR(60),																					/*UNIQUE & NOT NULL email*/
-    phone VARCHAR(15),	
-    PRIMARY KEY(user_id)
-);
-
-CREATE TABLE customerPayment
-(
-	user_id INT,																		/*UNIQUE AND NOT NULL user_id in CustomerPayment*/
-    cardType VARCHAR(10),																
-    cardNumber NUMERIC(16,0),				
-    cardSecurityNumber NUMERIC(3,0),
-    PRIMARY KEY(user_id),
-    FOREIGN KEY(user_id) REFERENCES customer(user_id) ON DELETE CASCADE
-);
-
-/*Creates rows for all varients of vehicles available. Thus, a different row for same make/model/year depending on color, engine, and trans.*/
-CREATE TABLE vehicles
-(
-	vehicle_id INT AUTO_INCREMENT, 	     /*Our unique identifier for a vehicle           */
-	vehicle_amount INT,                  /*How MANY of this vehicle we currently HAVE    */
-    vehicle_price double,                /*Price of the vehicle                          */
-    vehicle_classification VARCHAR(20),  /*SUV, TRUCK, CAR, ETC of vehicle in question   */
-    vehicle_manufacturer VARCHAR(15),    /*Manufacturer of vehicle in question           */
-    vehicle_make VARCHAR(15),            /*Make of vehicle in question                   */
-    vehicle_model VARCHAR(15),           /*Model of vehicle in question                  */
-    vehicle_year INT,                    /*Production year of vehicle in question        */
-    vehicle_color VARCHAR(10),
-    vehicle_engineSize VARCHAR(2),       /*V4, V6, V8 */
-    vehicle_transmission VARCHAR(4),     /*Auto or MANU */
-    vehicle_seatCapacity INT,
-    PRIMARY KEY(vehicle_id)
-);
-
-/*Creates rows for the amount of vehicles customer has purchased. Thus, USERID + VEHICLENUMBER allow for finding a specific row.*/
-CREATE TABLE customerVehicles
-(
-	user_id INT,																			/*NOT NULL user_id in customerVehicles*/
-    user_vehicleNumber INT,          														/*NOT NULL user_vehicleNumber*/
-    vehicle_id INT,              															/*NOT NULL vehicle_id*/
-    PRIMARY KEY(user_id, user_vehicleNumber),
-    FOREIGN KEY(user_id) REFERENCES customer(user_id) ON DELETE CASCADE,
-    FOREIGN KEY(vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE SET NULL
-);
-
-/*Three rows, V4, V6, V8*/
-CREATE TABLE engineWork
-(
-    engineSize VARCHAR(2),     																	/*UNIQUE engineSize*/
-    engineWorkCost INT,
-    enginePartsCost INT,
-    PRIMARY KEY(engineSize)
-);
-
-/*Two Rows, Auto and Trans*/
-CREATE TABLE transWork
-(
-	transmission VARCHAR(4),																	/*UNIQUE transmission*/
-	transWorkCost INT,
-    transPartsCost INT,
-    PRIMARY KEY(transmission)
-);
-
-/*Create a recieptID and associate it with a user for every vehicle sold*/
-CREATE TABLE salesRecieptForVehicles
-(
-	salesRecieptVehicles_id INT AUTO_INCREMENT,
-    user_id INT,																	/*NOT NULL user_id in salesRecieptForVehicles*/
-    vehicle_id INT,																	/*NOT NULL vehicle_id*/
-
-    tax DOUBLE(2,2),																/*NOT NULL tax*/
-    totalCost DOUBLE,																/*NOT NULL totalCost in salesRecieptForVehicles*/
-    PRIMARY KEY(salesRecieptVehicles_id),
-    FOREIGN KEY(user_id) REFERENCES customer(user_id) ON DELETE SET NULL
-);
-
-/*Create a recieptID and associate it with a user for every engine worked on*/
-CREATE TABLE salesRecieptForEngineWork
-(
-	salesRecieptEngine_id INT AUTO_INCREMENT,
-    user_id INT,													               /*NOT NULL user_id in salesRecieptForEngineWork*/
-    engineInfo VARCHAR(2),															/*NOT NULL engineInfo*/
-    
-    tax DOUBLE(2,2),																/*NOT NULL tax*/
-    totalCost DOUBLE,																/*NOT NULL totalCost in salesRecieptForEngineWork*/
-    PRIMARY KEY(salesRecieptEngine_id),
-    FOREIGN KEY(user_id) REFERENCES customer(user_id) ON DELETE SET NULL,
-    FOREIGN KEY(engineInfo) REFERENCES engineWork(engineSize) ON DELETE SET NULL
-);
-
-/*Create a recieptID and associate it with a user for every transmission worked on*/
-CREATE TABLE salesRecieptForTransWork
-(
-	salesRecieptTrans_id INT AUTO_INCREMENT,
-    user_id INT,																	/*NOT NULL user_id in salesRecieptForTransWork*/
-    transmissionInfo VARCHAR(4),													/*NOT NULL transmissionInfo*/
-    
-    tax DOUBLE(2,2),																/*NOT NULL tax*/
-    totalCost DOUBLE,																/*NOT NULL totalCost in salesRecieptForTransWork*/
-    PRIMARY KEY(salesRecieptTrans_id),
-    FOREIGN KEY(user_id) REFERENCES customer(user_id) ON DELETE SET NULL,
-    FOREIGN KEY(transmissionInfo) REFERENCES transWork(transmission) ON DELETE SET NULL
-);
-
-
-/*
-ALTERS FOR MISSED DATA
-
-NOTICE: SOME ALTERS WILL PRESENT AN ERROR, THIS ISN'T A PROBLEM SINCE THESE ERRORS ALSO OCCURR ON PRIMARY KEY VALUES, THUS THEY WOULD ALREADY
-HAVE TO BE NOT NULL, SO WHEN YOU DO THIS OPERATION ON THEM IT ESSENTIALLY STATES, "No shit sherlock, its a primary key, thus already not null.
-*/
-ALTER TABLE customer CHANGE user_userName user_userName VARCHAR(40) UNIQUE NOT NULL;  
-ALTER TABLE customer CHANGE user_password user_password VARCHAR(12) NOT NULL;  
-ALTER TABLE customer CHANGE firstName firstName VARCHAR(20) NOT NULL;  
-ALTER TABLE customer CHANGE lastName lastName VARCHAR(20) NOT NULL;  
-ALTER TABLE customer CHANGE DOB DOB DATE NOT NULL;  
-ALTER TABLE customer CHANGE address address VARCHAR(40) NOT NULL;  
-ALTER TABLE customer CHANGE state state VARCHAR(2) NOT NULL;  
-ALTER TABLE customer CHANGE email email VARCHAR(60) UNIQUE NOT NULL;  
-ALTER TABLE customer CHANGE phone phone VARCHAR(15) NOT NULL;  
-
-ALTER TABLE customerPayment CHANGE user_id user_id INT UNIQUE NOT NULL;
-
-ALTER TABLE customerVehicles CHANGE user_id user_id INT NOT NULL;
-ALTER TABLE customerVehicles CHANGE user_vehicleNumber user_vehicleNumber INT NOT NULL;
-ALTER TABLE customerVehicles CHANGE vehicle_id vehicle_id INT NOT NULL;
-
-ALTER TABLE engineWork CHANGE engineSize engineSize VARCHAR(2) UNIQUE NOT NULL;
-
-ALTER TABLE transWork CHANGE transmission transmission VARCHAR(4) UNIQUE NOT NULL;
-
-ALTER TABLE salesRecieptForVehicles CHANGE user_id user_id INT NOT NULL;
-ALTER TABLE salesRecieptForVehicles CHANGE vehicle_id vehicle_id INT NOT NULL;
-ALTER TABLE salesRecieptForVehicles CHANGE tax tax DOUBLE(2,2) NOT NULL;
-ALTER TABLE salesRecieptForVehicles CHANGE totalCost totalCost DOUBLE NOT NULL;
-
-ALTER TABLE salesRecieptForEngineWork CHANGE user_id user_id INT NOT NULL;
-ALTER TABLE salesRecieptForEngineWork CHANGE engineInfo engineInfo VARCHAR(2) NOT NULL;
-ALTER TABLE salesRecieptForEngineWork CHANGE tax tax DOUBLE(2,2) NOT NULL;
-ALTER TABLE salesRecieptForEngineWork CHANGE totalCost totalCost DOUBLE NOT NULL;
-
-ALTER TABLE salesRecieptForTransWork CHANGE user_id user_id INT NOT NULL;
-ALTER TABLE salesRecieptForTransWork CHANGE transmissionInfo transmissionInfo VARCHAR(4) NOT NULL;
-ALTER TABLE salesRecieptForTransWork CHANGE tax tax DOUBLE(2,2) NOT NULL;
-ALTER TABLE salesRecieptForTransWork CHANGE totalCost totalCost DOUBLE NOT NULL;
-
-
-/*
-INPUTTING BASE DATA INTO THE TABLES
-*/
-INSERT INTO engineWork VALUES ('V4', 150, 150);
-INSERT INTO engineWork VALUES ('V6', 210, 200);
-INSERT INTO engineWork VALUES ('V8', 275, 245);
-
-INSERT INTO transWork VALUES ('Auto', 200, 130);
-INSERT INTO transWork VALUES ('Manu', 150, 100);
-
-INSERT INTO vehicles VALUES (1, 10, 29000, 'Truck', 'Ford', 'Ford', 'F-150', 2021, 'Red', 'V6', 'AUTO', 5);
-INSERT INTO vehicles VALUES (2, 3, 29000, 'Truck', 'Ford', 'Ford', 'F-150', 2021, 'Blue', 'V6', 'AUTO', 5);
-INSERT INTO vehicles VALUES (3, 8, 29000, 'Truck', 'Ford', 'Ford', 'F-150', 2021, 'Black', 'V6', 'AUTO', 5);
-INSERT INTO vehicles VALUES (4, 4, 29000, 'Truck', 'Ford', 'Ford', 'F-150', 2021, 'White', 'V6', 'AUTO', 5);
-INSERT INTO vehicles VALUES (5, 11, 31000, 'Truck', 'Ford', 'Ford', 'F-150', 2021, 'Red', 'V8', 'AUTO', 5);
-INSERT INTO vehicles VALUES (6, 8, 31000, 'Truck', 'Ford', 'Ford', 'F-150', 2021, 'Blue', 'V8', 'AUTO', 5);
-INSERT INTO vehicles VALUES (7, 6, 31000, 'Truck', 'Ford', 'Ford', 'F-150', 2021, 'Black', 'V8', 'AUTO', 5);
-INSERT INTO vehicles VALUES (8, 3, 31000, 'Truck', 'Ford', 'Ford', 'F-150', 2021, 'White', 'V8', 'AUTO', 5);
-
-SELECT vehicle_id, vehicle_make, vehicle_model, vehicle_engineSize
-FROM vehicles
-WHERE vehicle_make = 'Ford' AND vehicle_model = 'F-150' AND vehicle_engineSize = 'V8';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-CREATE TABLE suppliers
-(
-	supplier_id INT AUTO_INCREMENT,               	 	/*ID that supplier will be known by*/
-    supplier_name VARCHAR(15),                     		/*Name of supplier                 */
-    
-    PRIMARY KEY(supplier_id)
-);
-
-CREATE TABLE products
-(
-	supplier_id INT,									/*ID that supplier is known by*/
-    supplier_productId INT AUTO_INCREMENT,              /*ID to identify products     */
-    supplier_productName VARCHAR(15),					/*Product Name, IE Doors, windshield, etc VERY VERY GENERIC NAMING*/
-    supplier_productPrice INT,							/*Price of product*/
-    supplier_DOP DATE,          						/*Date of Production, so if there is an issue with product we can find those who bought it*/
-    
-    PRIMARY KEY(supplier_id, supplier_productId),
-    FOREIGN KEY(supplier_id) REFERENCES suppliers(supplier_id) ON DELETE CASCADE
-);
-
-CREATE TABLE manufacturers
-(
-	manufacturer_id INT AUTO_INCREMENT,					/*ID that manufacturer will be known by */
-    manufacturer_name VARCHAR(15),						/*Name of manufacturer				   	*/
-    
-    PRIMARY KEY(manufacturer_id)
-);
-
-CREATE TABLE manufacturerModels
-(
-	manufacturer_id INT,
-	vehicle_vin INT AUTO_INCREMENT,						/*Unique identifier for every vehicle*/
-    vehicle_price INT,
-    vehicle_DOP DATE NOT NULL,               			/*DATE OF PRODUCTION in case a callback is needed*/
-	vehicle_make VARCHAR(15) NOT NULL,            		/*Make of this UNIQUE vehicle  */
-    vehicle_model VARCHAR(15) NOT NULL,           		/*Model of this UNIQUE vehicle */    
-    vehicle_year INT NOT NULL,                    		/*Year of this UNIQUE vehicle  */
-    vehicle_color VARCHAR(10) UNIQUE NOT NULL,			/*Color of this UNIQUE vehicle */
-    vehicle_engineSize VARCHAR(2) NOT NULL,       		/*Engine Size: V4, V6, V8      */
-    vehicle_transmission VARCHAR(4) NOT NULL,           /*Transmission: AUTO or MANU   */
-    
-    PRIMARY KEY(vehicle_vin),
-    FOREIGN KEY(manufacturer_id) REFERENCES manufacturers(manufacturer_id) ON DELETE CASCADE
-);
-
-CREATE TABLE ourCompanyVehicles
-(
-	manufacturer_id INT,
-	vehicle_vin INT,									/*Unique identifier for every vehicle  */
-    vehicle_classification VARCHAR(15),					/*Ex. TRUCK, CAR, Convertable, SUV etc This way we can group vehicles when showing users*/
-    vehicle_DOP DATE NOT NULL,               			/*DATE OF PRODUCTION: in case a callback is needed			 */
-    vehicle_DOA DATE NOT NULL,							/*DATE OF ACQUISITION: so we know when we bought the vehicle  */
-    vehicle_DOS DATE,									/*DATE OF SALE: so we know when we sell the vehicle           */
-	vehicle_make VARCHAR(15) NOT NULL,            		/*Make of this UNIQUE vehicle  */
-    vehicle_model VARCHAR(15) NOT NULL,           		/*Model of this UNIQUE vehicle */    
-    vehicle_year INT NOT NULL,                    		/*Year of this UNIQUE vehicle  */
-    vehicle_color VARCHAR(10) UNIQUE NOT NULL,			/*Color of this UNIQUE vehicle */
-    vehicle_engineSize VARCHAR(2) NOT NULL,       		/*Engine Size: V4, V6, V8      */
-    vehicle_transmission VARCHAR(4) NOT NULL,           /*Transmission: AUTO or MANU   */
-    
-    PRIMARY KEY(vehicle_vin),
-    FOREIGN KEY(manufacturer_id) REFERENCES manufacturers(manufacturer_id) ON DELETE SET NULL,
-    FOREIGN KEY(vehicle_vin) REFERENCES manufacturers(vehicle_vin) ON DELETE CASCADE
-);
-
-CREATE TABLE dealers
-(
-	dealer_id INT AUTO_INCREMENT,
-    dealer_name VARCHAR(15),
-    
-    PRIMARY KEY(dealer_id)
-);
-
-CREATE TABLE customers
+create table userInfo
 (
 	user_id INT AUTO_INCREMENT,																		
     user_userName VARCHAR(40) UNIQUE NOT NULL,         																
@@ -288,33 +14,149 @@ CREATE TABLE customers
     address VARCHAR(40) NOT NULL,			
     state VARCHAR(2) NOT NULL,
     email VARCHAR(60) UNIQUE NOT NULL,																					
-    phone VARCHAR(15) NOT NULL,	
+    phone INT NOT NULL,	
     
     PRIMARY KEY(user_id)
 );
 
-
-CREATE TABLE salesRecordForVehicles
+create table dealerInfo
 (
-	salesRecord_id INT AUTO_INCREMENT,
-    user_id INT, 
-    dealer_id INT,
-    vehicle_vin INT,
-    DOS DATE,
-
+	dealer_id INT AUTO_INCREMENT,
+    dealer_name VARCHAR(15) NOT NULL,
+    dealer_address VARCHAR(15),
+    dealer_phone INT,
     
-    PRIMARY KEY(salesRecord_id, vehicle_vin),
-    FOREIGN KEY(vehicle_vin) REFERENCES ourCompanysVehicles(vehicle_vin) ON DELETE CASCADE,
-    FOREIGN KEY(user_id) REFERENCES customers(user_id) ON DELETE SET NULL,
-    FOREIGN KEY(dealer_id) REFERENCES dealers(dealer_id) ON DELETE SET NULL
+    PRIMARY KEY(dealer_id)
 );
 
+create table supplierInfo
+(
+	supplier_id INT AUTO_INCREMENT,               	 	/*ID that supplier will be known by*/
+    supplier_name VARCHAR(15) NOT NULL,                     		/*Name of supplier                 */
+    supplier_address VARCHAR(15) NOT NULL,						/*Location of Supplier 			   */
+    supplier_phone INT NOT NULL,
+    
+    PRIMARY KEY(supplier_id)
+);
 
-/*How do we set up an order or sales record based off the information already present?*/
+create table productInventory
+(
+	supplier_id INT,
+    product_id INT AUTO_INCREMENT,
+    product_name VARCHAR(15),
+    product_price INT,
+    
+    PRIMARY KEY(product_id),
+    FOREIGN KEY(supplier_id) REFERENCES supplierInfo(supplier_id) ON DELETE CASCADE
+);
 
+create table brandInfo
+(
+	brand_id INT AUTO_INCREMENT,
+	brand_name VARCHAR(15) NOT NULL,
+	brand_address VARCHAR(15),
+	brand_phone INT,
+    
+	PRIMARY KEY(brand_id)
+);
 
+create table models
+(
+	brand_id INT,
+    model_id INT AUTO_INCREMENT,
+    model_classification VARCHAR(15) NOT NULL,
+    model_name VARCHAR(15),
+    
+    PRIMARY KEY(model_id),
+    FOREIGN KEY(brand_id) REFERENCES brandInfo(brand_id) ON DELETE SET NULL
+);
 
+create table vehicleInventory
+(
+	vehicle_vin INT AUTO_INCREMENT,
+    model_id INT,
+    vehicle_price INT,
+    vehicle_year NUMERIC(4,0),
+    vehicle_color VARCHAR(10),
+    vehicle_engine VARCHAR(2),
+    vehicle_trans VARCHAR(4),
+    DateProduced DATE,
+    DateSold DATE,
+    
+    PRIMARY KEY(vehicle_vin),
+    FOREIGN KEY(model_id) REFERENCES models(model_id) ON DELETE SET NULL
+);
 
+create table vehicleSalesRecord
+(
+	salesRecordNumberV INT AUTO_INCREMENT,
+    model_id INT,
+    /*Classification*/
+    vehicle_vin INT,
+    /*
+    Price
+    Year
+    Color
+    Engine
+    Trans
+    DateProduced
+    DateSold
+    */
+    user_id INT,
+    dealer_id INT,
+    
+    PRIMARY KEY(salesRecordNumberV),
+    FOREIGN KEY(model_id) REFERENCES models(model_id) ON DELETE SET NULL,
+    FOREIGN KEY(vehicle_vin) REFERENCES vehicleInventory(vehicle_vin) ON DELETE SET NULL
+    
+);
 
+create table productSalesRecord
+(
+	salesRecordNumberP INT AUTO_INCREMENT,
+    product_id INT,
+    /*
+    supplier_id
+    product_name
+    product_price
+    */
+    user_id INT,
+    dealer_id INT,
+    
+    PRIMARY KEY(salesRecordNumberP),
+    FOREIGN KEY(product_id) REFERENCES productInventory(product_id) ON DELETE SET NULL
+);
 
+ALTER TABLE userInfo CHANGE phone phone VARCHAR(15);
+ALTER TABLE dealerInfo CHANGE dealer_phone dealer_phone VARCHAR(15);
+ALTER TABLE brandInfo CHANGE brand_phone brand_phone VARCHAR(15);
+ALTER TABLE supplierInfo CHANGE supplier_phone supplier_phone VARCHAR(15);
 
+ALTER TABLE userInfo CHANGE address adress VARCHAR(30);
+ALTER TABLE dealerInfo CHANGE dealer_address dealer_address VARCHAR(30);
+ALTER TABLE brandInfo CHANGE brand_address brand_address VARCHAR(30);
+ALTER TABLE supplierInfo CHANGE supplier_address supplier_address VARCHAR(30);
+
+ALTER TABLE dealerInfo CHANGE dealer_name dealer_name VARCHAR(30);
+ALTER TABLE brandInfo CHANGE brand_name brand_name VARCHAR(30);
+ALTER TABLE supplierInfo CHANGE supplier_name supplier_name VARCHAR(30);
+
+ALTER TABLE productInventory CHANGE product_name product_name VARCHAR(50);
+
+/*ADD STATE TO Dealer, Brand and Suppliers*/
+
+INSERT INTO userInfo VALUES (1, 'jackyRyan121', 'DayThreeOne!', 'Jack', 'Ryan', '1999-01-01', 'M', 78000, '703 Driar Drive', 'MS', 'jackRyan_bestest@gmail.com', '6628162121');
+INSERT INTO userInfo VALUES (2, 'yolandaSkit', '21HONES!', 'Joanna', 'Frilen', '1972-01-01', 'F', 65500, '543 Domino Drive', 'TX', 'j_Frilen221@gmail.com', '2289046521');
+
+INSERT INTO dealerInfo VALUES (1, 'Chrissy Toyota Sellers', '2121 Overwound Drive', '6628281132');
+INSERT INTO dealerInfo VALUES (2, 'Duncans Ford Helpers', '4 Circle Drive', '2287411132');
+
+INSERT INTO supplierInfo VALUES (1, 'Windy Windshields', '432 Vermont Drive', '8012436201');
+INSERT INTO supplierInfo VALUES (2, 'Engine Farmers', '847 Dublin Street', '8247836201');
+
+INSERT INTO productInventory VALUES (2, 1, 'Engine V4 Parts', 225);
+INSERT INTO productInventory VALUES (1, 2, 'Full Size Windshield', 599); 
+
+INSERT INTO brandInfo VALUES (1, 'GMC', '300 Renaissance Center', '18004628782')
+
+INSERT INTO models VALUES (
