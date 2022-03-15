@@ -159,4 +159,162 @@ INSERT INTO productInventory VALUES (1, 2, 'Full Size Windshield', 599);
 
 INSERT INTO brandInfo VALUES (1, 'GMC', '300 Renaissance Center', '18004628782')
 
-INSERT INTO models VALUES (
+
+/*----------------------------------------------------------------------------------------*/
+/*Add model_manufacturer to model table*/
+ALTER TABLE models ADD model_manufacturer VARCHAR(20);
+ALTER TABLE dealerInfo ADD state VARCHAR(2);
+ALTER TABLE brandInfo ADD state VARCHAR(2);
+ALTER TABLE supplierinfo ADD state VARCHAR(2);
+
+/*brandInfo*/
+
+INSERT INTO brandInfo VALUES (2, 'Honda America', '17700 FL-50', 16628012185, 'FL'); /*Clement, Florida*/
+INSERT INTO brandInfo VALUES (3, 'BMW', '300 Chestnut Ridge Rd', 18662018743, 'NJ'); /*Bergin, New Jersey*/
+INSERT INTO brandInfo VALUES (4, 'Volkswagen', '1 Porche Drive', 12011032121, 'GA'); /*Atlanta, Georgia*/
+INSERT INTO brandInfo VALUES (5, 'Ford', '1 American Road', 17034443214, 'MI'); /*Wanye, Michigan*/
+
+/*Models*/
+
+INSERT INTO models VALUES (1, 1, 'CAR', 'Cheverolet', 'Corevette');
+INSERT INTO models VALUES (1, 2, 'CONVERTIBLE', 'Cheverolet', 'Camero');
+INSERT INTO models VALUES (1, 3, 'SUV', 'Cadillac', 'Escalade');
+
+INSERT INTO models VALUES (2, 4, 'TRUCK', 'Honda', 'Ridgeline');
+INSERT INTO models VALUES (2, 5, 'CAR', 'Acura', 'TLX');
+
+INSERT INTO models VALUES (3, 6, 'CAR', 'Mini', 'Cooper');
+INSERT INTO models VALUES (3, 7, 'CONVERTIBLE', 'BMW', '8 Series');
+
+INSERT INTO models VALUES (4, 8, 'CAR', 'Porche', '911');
+INSERT INTO models VALUES (4, 9, 'SUV', 'Volkswagen', 'Atlas');
+
+INSERT INTO models VALUES (5, 10, 'TRUCK', 'Ford', 'F-150');
+INSERT INTO models VALUES (5, 11, 'SUV', 'Lincoln', 'Navigator');
+/*------------------------------------------------------------------*/
+/*Vehicle Inventory*/
+/*Corevettes*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'RED', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'RED', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'RED', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'BLUE', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'BLUE', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'WHITE', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'BLACK', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'BLACK', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 60000, 2022, 'BLACK', 'V8', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'RED', 'V6', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'RED', 'V6', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'RED', 'V6', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'RED', 'V6', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'BLUE', 'V6', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'WHITE', 'V6', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'WHITE', 'V6', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'WHITE', 'V6', 'AUTO', '2021-10-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (1, 50000, 2022, 'BLACK', 'V6', 'AUTO', '2021-10-11');
+
+/*Cameros*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'RED', 'V6', 'AUTO', '2021-08-16');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'RED', 'V6', 'AUTO', '2021-08-16');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'RED', 'V6', 'AUTO', '2021-08-16');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'RED', 'V6', 'AUTO', '2021-08-16');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'WHITE', 'V6', 'AUTO', '2021-08-16');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'WHITE', 'V6', 'AUTO', '2021-08-16');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'BLACK', 'V6', 'MANU', '2021-08-16');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'BLACK', 'V6', 'MANU', '2021-08-16');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (2, 25000, 2021, 'BLACK', 'V6', 'MANU', '2021-08-16');
+
+/*Escalades*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (3, 55000, 2021, 'WHITE', 'V8', 'AUTO', '2021-05-02');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (3, 55000, 2021, 'BLACK', 'V8', 'AUTO', '2021-05-02');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (3, 55000, 2021, 'WHITE', 'V6', 'AUTO', '2021-05-02');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (3, 55000, 2021, 'WHITE', 'V6', 'AUTO', '2021-05-02');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (3, 55000, 2021, 'BLACK', 'V6', 'AUTO', '2021-05-02');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (3, 55000, 2021, 'BLACK', 'V6', 'MANU', '2021-05-02');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (3, 55000, 2021, 'BLACK', 'V6', 'MANU', '2021-05-02');
+
+/*Ridgeline*/
+INSERT INTO vehicleInventory(vehicle_vin, model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (4, 33000, 2021, 'RED', 'V6', 'AUTO', '2021-07-23');
+INSERT INTO vehicleInventory(vehicle_vin, model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (4, 33000, 2021, 'WHITE', 'V6', 'AUTO', '2021-07-23');
+INSERT INTO vehicleInventory(vehicle_vin, model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (4, 33000, 2021, 'BLACK', 'V6', 'AUTO', '2021-07-23');
+INSERT INTO vehicleInventory(vehicle_vin, model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (4, 33000, 2021, 'BLACK', 'V6', 'AUTO', '2021-07-23');
+
+/*TLX*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (5, 27000, 2021, 'BLACK', 'V6', 'AUTO', '2021-03-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (5, 27000, 2021, 'BLACK', 'V6', 'AUTO', '2021-03-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (5, 27000, 2021, 'BLACK', 'V6', 'AUTO', '2021-03-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (5, 27000, 2021, 'BLACK', 'V6', 'AUTO', '2021-03-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (5, 27000, 2021, 'BLACK', 'V6', 'AUTO', '2021-03-19');
+
+/*Coopers*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'RED', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'RED', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'RED', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'BLUE', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'BLUE', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'WHITE', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'WHITE', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'BLACK', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'BLACK', 'V4', 'AUTO', '2021-04-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (6, 19000, 2022, 'BLACK', 'V4', 'AUTO', '2021-04-19');
+
+/*8 Series*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (7, 85000, 2022, 'RED', 'V6', 'AUTO', '2021-07-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (7, 85000, 2022, 'RED', 'V6', 'AUTO', '2021-07-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (7, 85000, 2022, 'WHITE', 'V6', 'AUTO', '2021-07-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (7, 85000, 2022, 'WHITE', 'V6', 'AUTO', '2021-07-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (7, 85000, 2022, 'BLACK', 'V6', 'AUTO', '2021-07-19');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (7, 85000, 2022, 'BLACK', 'V6', 'AUTO', '2021-07-19');
+
+/*911*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (8, 90000, 2022, 'RED', 'V6', 'AUTO', '2021-01-25');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (8, 90000, 2022, 'RED', 'V6', 'AUTO', '2021-01-25');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (8, 90000, 2022, 'RED', 'V6', 'AUTO', '2021-01-25');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (8, 90000, 2022, 'WHITE', 'V6', 'AUTO', '2021-01-25');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (8, 90000, 2022, 'WHITE', 'V6', 'AUTO', '2021-01-25');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (8, 90000, 2022, 'BLACK', 'V6', 'AUTO', '2021-01-25');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (8, 90000, 2022, 'BLACK', 'V6', 'AUTO', '2021-01-25');
+
+/*Atlas*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (9, 30000, 2021, 'BLACK', 'V6', 'AUTO', '2021-06-10');
+
+/*F-150*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'WHITE', 'V8', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'WHITE', 'V8', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'BLACK', 'V8', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'BLACK', 'V8', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'RED', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'RED', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'RED', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'RED', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'BLUE', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'BLUE', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'WHITE', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'WHITE', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'WHITE', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'BLACK', 'V6', 'AUTO', '2021-12-14');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (10, 29000, 2021, 'BLACK', 'V6', 'AUTO', '2021-12-14');
+
+/*Navigator*/
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (11, 65000, 2021, 'BLACK', 'V8', 'AUTO', '2021-11-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (11, 65000, 2021, 'BLACK', 'V8', 'AUTO', '2021-11-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (11, 65000, 2021, 'RED', 'V6', 'AUTO', '2021-11-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (11, 65000, 2021, 'RED', 'V6', 'AUTO', '2021-11-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (11, 65000, 2021, 'WHITE', 'V6', 'AUTO', '2021-11-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (11, 65000, 2021, 'BLACK', 'V6', 'AUTO', '2021-11-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (11, 65000, 2021, 'BLACK', 'V6', 'AUTO', '2021-11-11');
+INSERT INTO vehicleInventory(model_id, vehicle_price, vehicle_year, vehicle_color, vehicle_engine, vehicle_trans, DateProduced) VALUES (11, 65000, 2021, 'BLACK', 'V6', 'AUTO', '2021-11-11');
+
+
+
+
+
