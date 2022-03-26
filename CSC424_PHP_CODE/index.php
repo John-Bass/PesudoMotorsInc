@@ -9,49 +9,56 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
+
   <head>
     <meta charset="utf-8">
     
     <title>
-
+        index
     </title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <style>
-    tr:nth-child(even)
-        {
-            background-color: #D6EEEE;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" media="screen">
   </head>
-  <body style="margin: 50px; background-image: url('rAuOq5.jpg'); background-attachment: fixed; background-size: cover;">
+
+
+
+  <body id="BodyStyleOne" style="margin: 50px; background-image: url('rAuOq5.jpg'); background-attachment: fixed; background-size: cover;">
+  <a href="logout.php"> Logout </a>
+  
   <h1>HOME PAGE</h1>
   <hr>
 
+  <div>
+        <a class='btn btn-primary btn-sm' href="login.php">Login</a>
 
-  <a class='btn btn-primary btn-sm' href="login.php">Login</a>
+        <a class='btn btn-primary btn-sm' href="signup.php">Signup</a>
 
-  <a class='btn btn-primary btn-sm' href="signup.php">Signup</a>
+        <a class='btn btn-primary btn-sm' href="vehicledata.php">All Vehicle Data</a>
 
-  <a class='btn btn-primary btn-sm' href="vehicledata.php">Vehicle Data</a>
+        <a class='btn btn-primary btn-sm' href="browse.php">Browse</a>
 
-  <a class='btn btn-primary btn-sm' href="browse.php">Browse</a>
+        <a class='btn btn-primary btn-sm' href="order.php">Order</a>
 
-  <a class='btn btn-primary btn-sm' href="order.php">Order</a>
-
+        <a class='btn btn-primary btn-sm' href="datainsertion.php">Data Insertion</a>
+  </div>
+  
   <br><br>
 
-  <form method="post">
-    <input class='btn btn-primary btn-sm' type="submit" name="showbrands" value="Brands"></input>
-    <input class='btn btn-primary btn-sm' type="submit" name="showsubbrands" value="Subbrands"></input>
-    <input class='btn btn-primary btn-sm' type="submit" name="showmodels" value="Models"></input>
-    <input class='btn btn-primary btn-sm' type="submit" name="showusers" value="Users"></input>
-    <input class='btn btn-primary btn-sm' type="submit" name="showvehicleorders" value="Ordered Vehicles"></input>
-    <input class='btn btn-primary btn-sm' type="submit" name="showproductorders" value="Ordered Products"></input>
-    
-    <input class='btn btn-primary btn-sm' type="submit" name="showInsertModels" value="Insert Models"></input>
-    <input class='btn btn-primary btn-sm' type="submit" name="showInsertVehicles" value="Insert Vehicles"></input>
-  </form>
+  <div>
+      <form method="post">
+          <input class='btn btn-primary btn-sm' type="submit" name="showbrands" value="Brands"></input>
+          <input class='btn btn-primary btn-sm' type="submit" name="showsubbrands" value="Subbrands"></input>
+          <input class='btn btn-primary btn-sm' type="submit" name="showmodels" value="Models"></input>
+          <input class='btn btn-primary btn-sm' type="submit" name="showusers" value="Users"></input>
+          <input class='btn btn-primary btn-sm' type="submit" name="showvehicleorders" value="Ordered Vehicles"></input>
+          <input class='btn btn-primary btn-sm' type="submit" name="showproductorders" value="Ordered Products"></input>
+      </form>
+  </div>
   
+  <br>
+
   <?php
     if(isset($_POST['showbrands']))
       {
@@ -66,8 +73,8 @@
         echo 
         "
         <br>
-          <table class=\"table\" style=\"background-color: white;\">
-            <tr style=\"background-color: lightgrey\">
+          <table class=\"table\">
+            <tr id=\"TOPTR\">
               <th>Name</th>
               <th>Address</th>
               <th>City</th>
@@ -115,8 +122,8 @@
         echo 
         "
         <br>
-          <table class=\"table\" style=\"background-color: white;\">
-            <tr style=\"background-color: lightgrey\">
+          <table class=\"table\">
+            <tr id=\"TOPTR\">
               <th>Brand</th>
               <th>Model</th>
               <th>Class</th>
@@ -159,8 +166,8 @@
         echo 
         "
         <br>
-          <table class=\"table\" style=\"background-color: white;\">
-            <tr style=\"background-color: lightgrey\">
+          <table class=\"table\">
+            <tr id=\"TOPTR\">
               <th>User ID</th>
               <th>First Name</th>
               <th>Last Name</th>
@@ -215,8 +222,8 @@
         echo 
         "
         <br>
-          <table class=\"table\" style=\"background-color: white;\">
-            <tr style=\"background-color: lightgrey\">
+          <table class=\"table\">
+            <tr id=\"TOPTR\">
               <th>Order #</th>
               <th>User</th>
               <th>VIN</th>
@@ -263,8 +270,8 @@
         echo 
         "
         <br>
-          <table class=\"table\" style=\"background-color: white;\">
-            <tr style=\"background-color: lightgrey\">
+          <table class=\"table\">
+            <tr id=\"TOPTR\">
               <th>Order #</th>
               <th>User</th>
               <th>Product #</th>
@@ -309,8 +316,8 @@
         echo 
         "
         <br>
-          <table class=\"table\" style=\"background-color: white;\">
-            <tr style=\"background-color: lightgrey\">
+          <table class=\"table\">
+            <tr id=\"TOPTR\">
               <th>Brand</th>
               <th>Subbrand</th>
               <th></th>
@@ -334,135 +341,6 @@
       }
 
   ?>
-
-
-
-
-    <?php
-              if(isset($_POST['showInsertModels']))
-              {
-                echo
-                "
-                <div>
-                  <form id=\"mod\" method=\"POST\">
-                    <h1>Insertion into Brand, Subbrand, and Model Tables</h1>
-                          <div>
-                            <label>Brand Name:</label>
-                            <input id=\"text\" type=\"text\"      name=\"brand_name\"
-                                  maxlength=\"100\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Subbrand Name:</label>
-                            <input id=\"text\" type=\"text\"      name=\"subbrand_name\"
-                                  maxlength=\"100\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Model Name:</label>
-                            <input id=\"text\" type=\"text\"      name=\"model_name\"
-                                  maxlength=\"100\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Classification:</label>
-                            <input id=\"text\" type=\"text\"      name=\"classificiation\"
-                                  maxlength=\"100\"></input><br><br>
-              
-                          <input id=\"button\" class='btn btn-danger btn-sm' type=\"submit\" name=\"submitInsert\"   value=\"Add\"><br><br>
-                  </form>
-                </div>
-                ";
-
-                if(isset($_POST['submitInsert']))
-                {
-                  $brand_name_value = $_POST['brand_name'];
-                  $model_name = $_POST['model_name'];
-                  $subbrand_name = $_POST['subbrand_name'];
-                  $classificiation = $_POST['classificiation'];
-                  $sqlBrand = "INSERT INTO `brandinfo`(`brand_name`) VALUES ('$brand_name_value')";
-                  $sqlSubbrands = "INSERT INTO `subbrands`(`brand_name`, `subbrand_name`) VALUES ('$brand_name_value','$subbrand_name')";
-                  $sqlModels = "INSERT INTO `models`(`model_name`, `model_classification`, `brand_name`) VALUES ('$model_name','$classificiation','$subbrand_name')";
-                  mysqli_query($con, $sqlBrand);
-                  mysqli_query($con, $sqlSubbrands);
-                  mysqli_query($con, $sqlModels);
-                }
-              }
-              else
-              {
-                
-                die;
-              }
-    ?>
-
-
-<?php
-              if(isset($_POST['showInsertVehicles']))
-              {
-                echo
-                "
-                <div>
-                  <form id=\"vic\" method=\"POST\">
-                    <h1>Insertion into Vehicles Table</h1>
-                          <div>
-                            <label>Year:</label>
-                            <input id=\"text\" type=\"text\"      name=\"vehicle_year\"
-                                  maxlength=\"100\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Model:</label>
-                            <input id=\"text\" type=\"text\"      name=\"model_name\"
-                                  maxlength=\"100\" placeholder=\"Existing Model\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Color:</label>
-                            <input id=\"text\" type=\"text\"      name=\"vehicle_color\"
-                                  maxlength=\"100\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Engine:</label>
-                            <input id=\"text\" type=\"text\"      name=\"vehicle_engine\"
-                                  maxlength=\"100\" placeholder=\"V8/V6/V4\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Transmission:</label>
-                            <input id=\"text\" type=\"text\"      name=\"vehicle_trans\"
-                                  maxlength=\"100\" placeholder=\"AUTO/MANU\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Price:</label>
-                            <input id=\"text\" type=\"text\"      name=\"vehicle_price\"
-                                  maxlength=\"100\"></input><br><br>
-                          </div>
-                          <div>
-                            <label>Date of Production:</label>
-                            <input id=\"text\" type=\"text\"      name=\"date_produced\"
-                                  maxlength=\"100\" placeholder=\"YYYY-MM-DD\"></input><br><br>
-                          </div>
-              
-                          <input id=\"button\" class='btn btn-danger btn-sm' type=\"submit\" name=\"submitInsertVehicle\"   value=\"Add\"><br><br>
-                  </form>
-                </div>
-                ";
-
-                if(isset($_POST['submitInsertVehicle']))
-                {
-                  $vehicle_price = $_POST['vehicle_price'];
-                  $vehicle_year = $_POST['vehicle_year'];
-                  $model_name = $_POST['model_name'];
-                  $vehicle_color = $_POST['vehicle_color'];
-                  $vehicle_engine = $_POST['vehicle_engine'];
-                  $vehicle_trans = $_POST['vehicle_trans'];
-                  $date_produced = $_POST['date_produced'];
-                  
-                  $sql = "INSERT INTO `vehicleinventory`(`vehicle_price`, `vehicle_year`, `model_name`, `vehicle_color`, `vehicle_engine`, `vehicle_trans`, `date_produced`, `isAvailable`) 
-                          VALUES ('$vehicle_price','$vehicle_year','$model_name','$vehicle_color','$vehicle_engine','$vehicle_trans','$date_produced','Y')";
-                  mysqli_query($con, $sql);
-                }
-              }
-              else
-              {
-                
-                die;
-              }
-    ?>
 
   </body>
 </html>

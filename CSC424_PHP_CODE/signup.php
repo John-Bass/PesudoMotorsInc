@@ -24,12 +24,11 @@ session_start();
     $user_card_number = $POST['user_card_number'];
     $user_sec_number = $_POST['user_sec_number'];
 
-    echo "Made it here";
+
     if(!empty($user_name) && !empty($user_password))
     {
       //save to database
       $web_id = random_num(20);
-      echo "Made it here #2";
       $query = "insert into users (user_name, user_password, user_first_name, user_last_name, user_date_of_birth, user_gender, user_income, user_address, user_city, user_state, user_phone, user_email, user_classification, user_card_type, user_card_number, user_sec_number, web_id) values ('$user_name', '$user_password', '$user_first_name', '$user_last_name', '$user_date_of_birth', '$user_gender', '$user_income', '$user_address', '$user_city', '$user_state', '$user_phone', '$user_email', '$user_classification', '$user_card_type', '$user_card_number', '$user_sec_number', '$web_id')";
 
       mysqli_query($con, $query);

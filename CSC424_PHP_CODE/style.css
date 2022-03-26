@@ -1,0 +1,24 @@
+#BodyStyleOne
+{
+    margin: 50px;
+    background-image: url('rAuOq5.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+table
+{
+    background-color: white;
+}
+
+/*Apply this to the top TR element of each table.*/
+#TOPTR
+{
+    background-color: lightgrey;
+}
+
+/*This will apply to all TR elements where they have multi-rows.*/
+tr:nth-child(even)
+{
+    background-color: #D6EEEE;
+}
