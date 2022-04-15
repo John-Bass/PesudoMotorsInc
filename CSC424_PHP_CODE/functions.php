@@ -37,11 +37,3 @@ function random_num($length)
   }
   return $text;
 }
-
-
-function filterTable($query)
-{
-    $con = mysqli_connect("localhost", "root", "", "pseudomotorsinc");
-    $filter_result = mysqli_query($con, $query);
-    return $filter_result;
-}
