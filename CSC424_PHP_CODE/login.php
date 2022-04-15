@@ -43,7 +43,7 @@ session_start();
      <meta charset="utf-8">
      <title>Login</title>
    </head>
-   <body style="background-image: url('logImage.jpg'); background-attachment: fixed; background-size: cover;">
+   <body>
       <style type="text/css">
 
       #text{
@@ -62,9 +62,7 @@ session_start();
       }
 
       #box{
-        background-image: url('for--black-and-red-stripes-background-slides.jpg');
-        background-attachment: fixed;
-        background-size: 35% 35%;
+        background-color: grey;
         margin: auto;
         width: 300px;
         padding: 20px;
@@ -73,12 +71,12 @@ session_start();
 
       <div id="box">
         <form method="post">
-          <div style = "text-align: center; font-size: 20px; margin: 10px; color: white">Login</div>
-          <input id="text" size="37px" type="text" name="user_name"> <br><br>
-          <input id="text" size="37px" type="password" name="user_password"><br><br>
+          <div style = "font-size: 20px; margin: 10px; color: white">Login</div>
+          <input id="text" type="text" name="user_name"> <br><br>
+          <input id="text" type="password" name="user_password"><br><br>
           <input id="button" type="submit" value="Login"><br><br>
 
-          <a id="button" href="signup.php">Signup</a><br><br>
+          <a href="signup.php">Signup</a><br><br>
         </form>
       </div>
    </body>
