@@ -1,0 +1,79 @@
+#submitForm
+{
+  padding: 0em 1em;
+  background-color: #282828;
+  border-radius: 30px;
+  height: 200px;
+}
+
+body
+{
+  background-image: url("sinImage.jpg");
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  /* border: 3px solid green; */
+  color:rgb(37, 123, 223);
+}
+
+input{
+  width: 80px;
+  font-size: 10px;
+  padding: 0px 4px;
+}
+input[type=text]:focus,input[type=email]:focus,input[type=password]:focus
+{
+  width: 80px;
+  font-size: 10px;
+  padding: 0px 4px;
+  background-color: lightblue;
+}
+
+
+#userClassification
+{
+  margin-left: 3.719em;
+  width: 80px;
+}
+
+#submitButton
+{
+  font-size: 1rem;
+  padding: .1em .3em;
+  margin-top: .5em;
+  margin-left: 5em;
+  background-color: rgb(233, 186, 86);
+  border:double;
+  color: rgb(37, 123, 223);
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 5.45em;
+}
+
+#userEmail
+{
+  margin-left: 3.4em;
+}
+#userName
+{
+  margin-left: .35em;
+}
+#userPassword
+{
+  margin-left: 1.1em;
+}
+#userFirstName
+{
+  width: 4.1rem;
+}
+#userLastName
+{
+  width: 4.1rem;
+}
