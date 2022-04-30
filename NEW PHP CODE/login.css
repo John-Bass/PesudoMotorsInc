@@ -8,13 +8,10 @@
     color:rgb(37, 123, 223);
 }
 
-body
+/* body
 {
-  background-image: url("logImage.jpg");
-  background-position:center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
+} */
 
 #loginForm
 {

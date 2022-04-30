@@ -47,12 +47,12 @@ session_start();
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="signupscss.css">
     <title>Signup Page</title>
   </head>
-  <body>
+  <body style="background-image: url('sinImage.jpg'); background-attachment: fixed; background-size: cover;">
     <div class="container">
-      <form id="submitForm">
+      <form id="submitForm" method="post">
         <h1 style="height:25px; text-align:center">Signup</h1>
         Email: 
         <input id="userEmail" type="email" name="user_email" maxlength="100">
