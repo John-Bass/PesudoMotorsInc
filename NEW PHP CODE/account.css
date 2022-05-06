@@ -74,28 +74,36 @@ span
 .masterBlock
 {
     display:block;
-    margin:auto;
-    white-space: nowrap;
-    background-color: red;
+    text-align: center;
+    margin-left: 25%;
+    background-color: rgb(215, 159, 159);
     width:50%;
     transform:translate(0%,0%);
     border-radius: 25px;
 }
+
 .mainBox
 {
     display: block;
-    background-color: black;
+    background-color: white;
     font-size: 13px;
 }
+
 .textBoxFirstWindow
 {
     display:inline-block;
     width: 49.85%;
     background-color: yellow;
 }
+
 .textBoxSecondWindow
 {
     display:inline-block;
     width: 25%;
     background-color: green;
+}
+
+#updatebtn
+{
+    margin-left: 46%;
 }

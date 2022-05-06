@@ -1,3 +1,13 @@
+<?php
+session_start(); //Add this
+
+include ("connection.php");
+include ("functions.php");
+
+// Also you have to add your connection file before your query
+require('connection.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +21,6 @@
 
     </style>
 </head>
-
 
 <header>
     <h1 id="navH1">Pseudo<span>Motors</h1>
@@ -32,161 +41,391 @@
 <body>
     <div id="bodyContainer">
         <br>
+        <br>
+          
+    <div id="bodyContainer">
+        <form id = "updateButton" method = "POST">
+            <input type = "text" name = "user_name" maxlength = "100"> 
+            <input type = "submit" name="update" value="Update"/>
+        </form>
         <div class="masterBlock" id="masterBlockID">
-            <div>
-                <h2 style="text-align: center;">Account Information</h2>
-            </div>
-            <div class="mainBox">
-                <div class="textBoxFirstWindow" id="boxOne" style="text-align: right;">
-                    UserName:
-                </div>
-                <div class="textBoxFirstWindow" id="boxTwo">
-                    UserName Stated
-                </div>
-                
-                <br>
+            <?php
 
-                <br>
+                $sql = "SELECT users.user_name
+                FROM users WHERE web_id = '495544'";
 
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Card#:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Card# Stated / PLACE BUTTON TO FILL IN
-                </div>
-                
-                <br>
+                $result = $con->query($sql); 
 
-                <br>
+                if(!$result)
+                {
+                    die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>User Name</h1>           <h3>". $row["user_name"] ."</h3>
+                    ";
+                    }
+                }
 
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Birthday:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Birthday Stated / PLACE BUTTON TO FILL IN
-                </div>
-                
-                <br>
+                if(isset($_POST['update']))
+                {
+                    $user_name = $_POST['user_name'];
+                    $query = "UPDATE users.user_name WHERE $user_name = 'user_name'";
+                    mysqli_query($con,$query);        
+                }
 
-                <br>
+            ?>
 
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Income:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Income Stated / PLACE BUTTON TO FILL IN
-                </div>
-            </div>
+            
+            <br>
+        </div>
 
-                <br>
+        <br>
 
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT users.user_first_name
+                FROM users WHERE web_id = '495544'";
 
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>First Name</h1>           <h3>". $row["user_first_name"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+    <br>
+
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT users.user_last_name
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Last Name</h1>           <h3>". $row["user_last_name"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+    <br>
+
+    <div class="masterBlock">
+        <?php
+                $sql = "SELECT users.user_date_of_birth
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Date of Birth</h1>           <h3>". $row["user_date_of_birth"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+
+        <br>
+
+    <div class="masterBlock">
+        <?php
+                $sql = "SELECT user_gender
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Gender</h1>           <h3>". $row["user_gender"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+
+        <br>
+
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT user_income
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Income</h1>           <h3>". $row["user_income"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+
+        <br>
+
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT user_address
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Address</h1>           <h3>". $row["user_address"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+
+        <br>
+
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT user_city
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>City</h1>           <h3>". $row["user_city"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
         </div>
         <br>
+            
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT user_phone
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Phone Number</h1>           <h3>". $row["user_phone"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+
         <br>
+
         <div class="masterBlock">
-            <div>
-                <h2 style="text-align: center;">Card Information</h2>
-            </div>
-            <div class="mainBox">
-                <div class="textBoxFirstWindow" id="boxOne" style="text-align: right;">
-                    UserName:
-                </div>
-                <div class="textBoxFirstWindow" id="boxTwo">
-                    UserName Stated
-                </div>
-                
-                <br>
+        <?php
+                $sql = "SELECT user_email
+                FROM users WHERE web_id = '495544'";
 
-                <br>
+                $result = $con->query($sql); 
 
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Card#:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Card# Stated / PLACE BUTTON TO FILL IN
-                </div>
-                
-                <br>
-
-                <br>
-
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Birthday:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Birthday Stated / PLACE BUTTON TO FILL IN
-                </div>
-                
-                <br>
-
-                <br>
-
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Income:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Income Stated / PLACE BUTTON TO FILL IN
-                </div>
-            </div>
-                <br>
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Email</h1>           <h3>". $row["user_email"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
         </div>
-    <br>
+        <br>
 
-
-
-
-    <br>
         <div class="masterBlock">
-            <div>
-                <h2 style="text-align: center;">YOU GET IT Information</h2>
-            </div>
-            <div class="mainBox">
-                <div class="textBoxFirstWindow" id="boxOne" style="text-align: right;">
-                    UserName:
-                </div>
-                <div class="textBoxFirstWindow" id="boxTwo">
-                    UserName Stated
-                </div>
-                
-                <br>
+        <?php
+                $sql = "SELECT user_classification
+                FROM users WHERE web_id = '495544'";
 
-                <br>
+                $result = $con->query($sql); 
 
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Card#:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Card# Stated / PLACE BUTTON TO FILL IN
-                </div>
-                
-                <br>
-
-                <br>
-
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Birthday:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Birthday Stated / PLACE BUTTON TO FILL IN
-                </div>
-                
-                <br>
-
-                <br>
-
-                <div class="textBoxFirstWindow" id="boxThree" style="text-align: right;">
-                    Income:
-                </div>
-                <div class="textBoxFirstWindow" id="boxFour">
-                    Income Stated / PLACE BUTTON TO FILL IN
-                </div>
-            </div>
-                <br>
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Classification</h1>           <h3>". $row["user_classification"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
         </div>
-    <br>
-    <br>
+        <br>
 
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT user_card_type
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Card Type</h1>           <h3>". $row["user_card_type"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+        <br>
+
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT user_sec_number
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Security Number</h1>           <h3>". $row["user_sec_number"] ."</h3>
+                    ";
+                    }
+                }
+            ?>
+            <br>
+        </div>
+        <br>
+
+        <div class="masterBlock">
+        <?php
+                $sql = "SELECT user_date_joined
+                FROM users WHERE web_id = '495544'";
+
+                $result = $con->query($sql); 
+
+                if(!$result)
+                {
+                     die("Invalid Query: " . $con->error);
+                }
+                else
+                {
+                while($row = $result->fetch_assoc())
+                    {
+                    echo "
+                    <h1>Date Joined</h1>           <h3>". $row["user_date_joined"] ."</h3>
+                    ";
+                    }
+
+                }
+            ?>
+            <br>
+        </div>
+        <br>
+            </div>
+                <br>
     </div>
 </body>
 </html>
+
+
+
+
+<?php
+    // WORK IN PROGRESS CODE!!!
+
+    $query = "SELECT users.user_first_name FROM users WHERE web_id = '495544'"
+?>
