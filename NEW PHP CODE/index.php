@@ -5,141 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="index.css">
 
     <style>
-        #bodyContainer
-        {
-            background-color: grey;
-            /* margin-left: 5%;
-            margin-right: 5%; */
-            margin-left: 4%;
-            width: 90%;
-            margin-top: 1.7%;
-            background-color:rgb(8, 7, 19);
-        }
-        #newsANDupdates
-        {
-            white-space: nowrap;
-            background-color: beige;
-            border-radius: 25px;
-        }
-        #news
-        {
-            margin-top: 1.7%;
-            display: inline-block;
-            text-align: center;
-            /* margin-left: 4.5%;
-            margin-right: 0%; */
-            width:45%;
-            margin-left: 4%;
-            font-size: 15px;
-            color: white;
-
-            background-color: rgb(5, 60, 150);
-            border-radius: 25px;
-        }
-        #newsUL
-        {
-            text-align: left;
-        }
-        #updates
-        {
-            display: inline-block;
-            text-align: center;
-            /* margin-right: 0%;
-            margin-left: 35%; */
-            width:45%;
-            font-size: 15px;
-            color: white;
-
-            background-color: rgb(5, 60, 150);
-            border-radius: 25px;
-        }
-        #updatesUL
-        {
-            text-align: left;
-        }
-
-        /*CATAGORY CONTAINERS*/
-        #imageLinkContainer
-        {
-            position: static;
-            display: block;
-            margin: auto;
-            width: 100%;
-            margin-top: -0%;
-
-            background-color: beige;
-            border-radius: 25px;
-        }
-        #imageLinkOne
-        {
-            display: block;
-            margin: auto;
-            max-height: 150px;
-            width: 50%;
-            /* transform: translate(50%); */
-        }
-        #imageLinkTwo
-        {
-            display: block;
-            margin:auto;
-            max-height: 150px;
-            width: 50%;
-            /* transform: translate(50%); */
-        }
-        #imageLinkThree
-        {
-            display: block;
-            margin:auto;
-            max-height: 150px;
-            width: 50%;
-            /* transform: translate(50%); */
-        }
-        #imageLinkFour
-        {
-            display: block;
-            margin:auto;
-            max-height: 150px;
-            width: 50%;
-            /* transform: translate(50%); */
-        }
         
-
-
-        #truckText
-        {
-            text-align: center;
-            color: Black;
-            left: 50%;
-        }
-        #suvText
-        {
-            text-align: center;
-            color: Black;
-            left: 50%;
-        }
-        #carText
-        {
-            text-align: center;
-            color: Black;
-            left: 50%;
-        }
-        #convertibleText
-        {
-            text-align: center;
-            color: Black;
-            left: 50%;
-        } 
-
-
-        .image 
-        {
-            border-radius: 25px;
-            padding: 10px 10px;
-        }
-
     </style>
     <title>index</title>
 </head>
@@ -174,13 +43,13 @@
                     </ul>
             </div>
             <div id="updates">
-                <h3>NEWS<h3>
+                <h3>UPDATES<h3>
                     <hr>
                     <ul id="updatesUL">
-                        <li>Scenic Test Drives NOW Offered</li>
-                        <li>Added New 2022 SUVS!</li>
-                        <li>Competitive QUOTES Daily</li>
-                        <li>SPRING SALE IN EFFECT!</li>
+                        <li>Finished the PsuedoMotors Website!</li>
+                        <li>Added Brand New Car Images!</li>
+                        <li>Utilize Our New Browse Feature!</li>
+                        <li>All New Vehicles In Stock!</li>
                     </ul>
             </div>
             <br>
@@ -194,9 +63,9 @@
         <div id="imageLinkContainer">
         
             <div class="imageLinks">
-                <a href="##########">
+                <a id="CLASSIDHERE" href="browse.php">
                     <div class="textContainer">
-                        <img class="image" id="imageLinkTwo" src="logImage.jpg" alt="Catagory Name HERE" title="TRUCKS">
+                        <img class="image" id="imageLinkTwo" src="suvImage.jpg" alt="Catagory Name HERE" title="SUVS">
                         <div id="suvText" class="textCentered">SUVS</div>
                     </div>
                 </a>
@@ -207,9 +76,9 @@
 
 
             <div class="imageLinks">
-                <a href="##########">
+                <a id="CLASSIDHERE" href="browse.php">
                     <div class="textContainer">
-                        <img class="image" id="imageLinkTwo" src="logImage.jpg" alt="Catagory Name HERE" title="TRUCKS">
+                        <img class="image" id="imageLinkTwo" src="truckImage.jpg" alt="Catagory Name HERE" title="TRUCKS">
                         <div id="truckText" class="textCentered">TRUCKS</div>
                     </div>
                 </a>
@@ -220,9 +89,9 @@
 
 
             <div class="imageLinks">
-                <a href="##########">
+                <a id="CLASSIDHERE" href="browse.php">
                     <div class="textContainer">
-                        <img class="image" id="imageLinkTwo" src="logImage.jpg" alt="Catagory Name HERE" title="CARS">
+                        <img class="image" id="imageLinkTwo" src="carImage.jpg" alt="Catagory Name HERE" title="CARS">
                         <div id="carText" class="textCentered">CARS</div>
                     </div>
                 </a>
@@ -233,9 +102,9 @@
 
             
             <div class="imageLinks">
-                <a href="##########">
+                <a id="CLASSIDHERE" href="browse.php">
                 <div class="textContainer">
-                        <img class="image" id="imageLinkTwo" src="logImage.jpg" alt="Catagory Name HERE" title="CONVERTIBLES">
+                        <img class="image" id="imageLinkTwo" src="convertibleImage.jpg" alt="Catagory Name HERE" title="CONVERTIBLES">
                         <div id="convertibleText" class="textCentered">CONVERTIBLES</div>
                     </div>
                 </a>
