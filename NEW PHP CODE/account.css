@@ -2,7 +2,7 @@ body,html
 {
     margin:0;
     padding:0;
-    background-color:rgb(8, 7, 19);
+    background-color:whitesmoke;
 }
 
 
@@ -67,7 +67,7 @@ span
     width: 90%;
     margin-top: 3.6%;
     /* background-color:rgb(8, 7, 19); */
-    background-color: beige;
+    background-color: #ADD8E6;
     border-radius: 25px;
 }
 
@@ -76,7 +76,7 @@ span
     display:block;
     text-align: center;
     margin-left: 25%;
-    background-color: rgb(215, 159, 159);
+    background-color: #6874E8;
     width:50%;
     transform:translate(0%,0%);
     border-radius: 25px;

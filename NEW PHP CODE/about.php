@@ -24,10 +24,11 @@
     </nav>
 </header>
 
-<body style="background-image: url('carArt.jpg'); background-attachment: fixed; background-size: cover;">
+<body>
     <div id="Innerbody">
         <div id="headingtext">
             <h1 id="heading">
+                <br>
                 About The Team
             </h1>
         </div>
@@ -43,7 +44,7 @@
         <div id = "member1">
             John Bass
             <div id = "imageOne">
-                <img src = "Tletter.jpg" alt="JohnBass" width="250" height="250">
+                <img style = "margin-right: 50%;"src = "Tletter.jpg" alt="JohnBass" width="250" height="250">
             </div>
                 <p id = "member1word">
                     John Bass is a senior student studying in University of Southern Mississippi working towards a Bachelor Degree in Computer Science. <br>
@@ -52,7 +53,7 @@
         <div id="member2">
             Jonathan Tran
             <div id= "imageTwo">
-                <img src="Tletter.jpg" alt="JonathanTran" width="250" height="250">
+                <img style = "margin-right:55%; text-align:center;"src="Tletter.jpg" alt="JonathanTran" width="250" height="250">
             </div>
                 <p id = "member2word">
                     Jonathan Tran is a senior student currently studying in University of Southern Mississippi working towards a Bachelor Degree in Computer Sciences. <br>
@@ -66,7 +67,7 @@
         <div id="member3">
             Wanya Wartley
             <div id= "imageThree">
-                <img src="Wletter.jpg" alt="WanyaWartley" width="250" height="250">
+                <img style = "margin-right:55%;"src="Wletter.jpg" alt="WanyaWartley" width="250" height="250">
             </div>
                 <p id = "member3word">
                     Wanya Wartley is a senior student studying in University of Southern Mississippi working towards a Bachelor Degree in Computer Science. <br>
