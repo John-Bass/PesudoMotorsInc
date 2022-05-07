@@ -23,7 +23,7 @@
         <ul id="navUl">
             <li id="navLi"><a id="navA" href="index.php">Home</a></li>
             <li id="navLi"><a id="navA" href="browse.php">Browse</a></li>
-            <li id="navLi"><a id="navA" href="cart.php">Cart</a></li>
+            <li id="navLi"><a id="navA" href="cart.php">DBA</a></li>
             <li id="navLi"><a id="navA" href="account.php">Account</a></li>
             <li id="navLi"><a id="navA" href="about.php">About</a></li>
             <li id="navLi"><a id="navA" href="signup.php">Signup</a></li>
@@ -42,37 +42,43 @@
             <br><br>
 
             <select name="make" id="dropdown1">
-                <option value="model_name1">Truck</option>
-                <option value="model_name2">Car</option>
-                <option value="model_name3">Convertible</option>
-                <option value="model_name4">SUV</option>
+                <option value="TRUCK">Truck</option>
+                <option value="CAR">Car</option>
+                <option value="CONVERTIBLE">Convertible</option>
+                <option value="SUV">SUV</option>
                 
                 
             </select>
 
             <select name="engine" id ="dropdown2">
-                <option value="vehicle_engine1">V4</option>
-                <option value="vehicle_engine2">V6</option>
-                <option value="vehicle_engine3">V8</option>
+                <option value="V4">V4</option>
+                <option value="V6">V6</option>
+                <option value="V8">V8</option>
 
             </select>
 
             <select name="transmission" id ="dropdown3">
-                <option value="vehicle_trans1">Manual</option>
-                <option value="vehicle_trans2">Automatic</option>
+                <option value="MANU">Manual</option>
+                <option value="AUTO">Automatic</option>
 
             </select>
 
             <select name="price" id="dropdown4">
-                <option value="vehicle_price1">0 to 25000</option>
-                <option value="vehicle_price2">26000 to 33000</option>
-                <option value="vehicle_price3">34000 to 55000</option>
-                <option value="vehicle_price4">56000 to 90000</option>
+                <option value="19000">10000 to 19999 </option>
+                <option value="25000">20000 to 29999</option>
+                <option value="33000">30000 to 39999</option>
+                <option value="4">40000 to 49999</option>
+                <option value="55000">50000 to 59999</option>
+                <option value="60000">60000 to 69999</option>
+                <option value="7">70000 to 79999</option>
+                <option value="85000">80000 to 89999</option>
+                <option value="9">90000 to 99999</option>
+               
 
-            </select>
+           
 
             
-            <input type="submit" value="Submit" id="submit"/>
+            <input type="submit" name = "submit" value="Submit" id="submit"/>
             <br><br><br>
 
             
@@ -81,113 +87,117 @@
 
     </div>
 
-           
-             <?php
+    
+      <table  width = "45%" style="background-color: white" class="table">
+        <thead>
+          <tr style="background-color: white;">
+            <th>Vin #</th>
+            <th>Class</th>
+            <th>Model Name</th>
+            <th>Color</th>
+            <th>Year</th>
+            <th>Engine</th>
+            <th>Trans</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
 
-             if(isset($_POST['submit'])) 
+
+        <?php
+
+if(isset($_POST['submit'])) 
             {
-                if($_POST['vehicle_engine1'])
-                {
-                    $vehicle_engine = $_POST['vehicle_engine1'];
-                }
-                elseif($_POST['vehicle_engine1'])
-                {
-                    $vehicle_engine = $_POST['vehicle_engine2'];
-
-                }
-                else
-                {
-                    $vehicle_engine = $_POST['vehicle_engine3'];
-                }
-
-                if($_POST['vehicle_price1'])
-                {
-                    $vehicle_price = $_POST['vehicle_price1'];
-                }
-                elseif($_POST['vehicle_price1'])
-                {
-                    $vehicle_price = $_POST['vehicle_price2'];
-                }
-                elseif($_POST['vehicle_price1'])
-                {
-                    $vehicle_price = $_POST['vehicle_price3'];
-                }
-                else
-                {
-                    $vehicle_price = $_POST['vehicle_price4'];
-                }
-                
-                if($_POST['vehicle_trans1'])
-                {
-                    $vehicle_trans = $_POST['vehicle_trans1'];
-                }
-                else
-                {
-                    $vehicle_trans = $_POST['vehicle_trans2']; 
-                }
-
-                if($_POST['model_name1'])
-                {
-                    $model_classification = $_POST['model_name1'];
-                }
-                elseif($_POST['model_name1'])
-                {
-                    $model_classification = $_POST['model_name2'];
-                }
-                elseif($_POST['model_name1'])
-                {
-                    $model_classification= $_POST['model_name3'];
-                }
-                else
-                {
-                    $model_classification = $_POST['model_name4'];
-                }
-
-                
-                $sql = "SELECT 'vehicleinventory'('model_classification',vehicle_engine','vehicle_trans','vehicle_price') VALUES('$model_classification','$vehicle_engine','$vehicle_trans','$vehicle_price')";
-                $result = $con->query($sql);
-
-                if (!$result){
-                    die("Connection failed: ". $con->connect_error);
-                }
-
-               echo
-               "
-               <tr>
-
-                 <th>Model Classification</th>
-                 <th>Vehicle Engine</th>
-                 <th>Vehicle Trans</th>
-                 <th>Vehicle Price</th>
-
-               </tr>
                
-               ";
-
-                while($row = $result->fetch_assoc()){
-
-                    echo 
-                    "
-                     <tr>
-
-                        <td>" . $row["model_classifcation"] . "</td>
-                        <td>" . $row["vehicle_engine"] . "</td>
-                        <td>" . $row["vehicle_trans"] . "</td>
-                        <td>" . $row["vehicle_price"] . "</td>
-
-
-                     </tr>
-                    ";
-
+                if($_POST['engine'])
+                {
+                    $vehicle_engine = $_POST['engine'];
                 }
+
                
-            }
             
+
+                if($_POST['price'])
+                {
+
+                    $vehicle_price = $_POST['price'];
+                }
+               
+                
+
+                if($_POST['transmission'])
+                {
+                    $vehicle_trans = $_POST['transmission'];
+                }
+               
+
+                if($_POST['make'])
+                {
+                    $model_classification = $_POST['make'];
+                }
+               
+               
+               
+          $sql = "SELECT models.model_classification,vehicleInventory.vehicle_vin ,vehicleInventory.model_name, vehicleInventory.vehicle_color , vehicleInventory.vehicle_year,vehicleInventory.vehicle_engine, vehicleInventory.vehicle_trans, vehicleInventory.vehicle_price,vehicleInventory.isAvailable
+                  FROM vehicleInventory,models
+                  WHERE models.model_name = vehicleInventory.model_name  AND isAvailable = 'Y' AND models.model_classification='$model_classification' AND vehicleInventory.vehicle_price = '$vehicle_price' AND vehicleInventory.vehicle_engine ='$vehicle_engine' AND vehicleInventory.vehicle_trans = '$vehicle_trans' 
+                  ORDER BY model_name ASC;";
+
+          $result = $con->query($sql); 
+
+          if(!$result)
+          {
+            die("Invalid Query: " . $con->error);
+          }
+          else
+          {
+            while($row = $result->fetch_assoc())
+            {
+              echo "<tr>
+              <td>" . $row["vehicle_vin"] . " </td>
+              <td>" . $row["model_classification"] . "</td> 
+              <td>" . $row["model_name"] . "</td> 
+              <td>" . $row["vehicle_color"] . "</td> 
+              <td>" . $row["vehicle_year"] . "</td> 
+              <td>" . $row["vehicle_engine"] . "</td>
+              <td>" . $row["vehicle_trans"] . "</td>
+              <td>" . $row["vehicle_price"] . "</td>
+              <td>
+              ";
+              ?>
+              <?php
               
-                ?>
-            
+              echo"
+              <form method=\"POST\">
+                <input type=\"submit\" name = \"order\" value=\"order\" id=\"submit\">
+              </form>
+                
+                ";
+              ?>
+                <?php
+                
+                echo "
 
-      
+
+              </td>
+            </tr>";
+            
+            }
+          }
+        }elseif(isset($_POST['order']))
+        {
+            // $order = $_POST['order'];
+            // $sql = "UPDATE vehicleInventory SET isAvailable = 'N' WHERE $vehicle_vin = 'order'";
+            // mysqli_query($con,$sql);
+
+              
+        }
+          ?>
+        </tbody>
+      </table>
+
+           
+        
     
 </body>
 </html>
