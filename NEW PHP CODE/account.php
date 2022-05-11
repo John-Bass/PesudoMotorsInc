@@ -28,11 +28,9 @@ require('connection.php');
         <ul id="navUl">
             <li id="navLi"><a id="navA" href="index.php">Home</a></li>
             <li id="navLi"><a id="navA" href="browse.php">Browse</a></li>
-            <li id="navLi"><a id="navA" href="cart.php">Cart</a></li>
-            <li id="navLi"><a id="navA" href="account.php">Account</a></li>
+            <li id="navLi"><a id="navA" href="DBA.php">DBA</a></li>
             <li id="navLi"><a id="navA" href="about.php">About</a></li>
-            <li id="navLi"><a id="navA" href="signup.php">Signup</a></li>
-            <li id="navLi"><a id="navA" href="login.php">Login</a></li>
+            
         </ul>
     </nav>
 </header>
@@ -516,7 +514,7 @@ require('connection.php');
                 $user_email = $_POST['user_email'];
                 $user_classification = $_POST['user_classification'];
                 $user_card_type = $_POST['user_card_type'];
-                $user_card_number = $POST['user_card_number'];
+                $user_card_number = $_POST['user_card_number'];
                 $user_sec_number = $_POST['user_sec_number']; 
 
                 

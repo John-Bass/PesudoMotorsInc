@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="browse.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>index</title>
    
 </head>
@@ -22,12 +23,13 @@
     <nav id="navbar">
         <ul id="navUl">
             <li id="navLi"><a id="navA" href="index.php">Home</a></li>
-            <li id="navLi"><a id="navA" href="browse.php">Browse</a></li>
-            <li id="navLi"><a id="navA" href="cart.php">DBA</a></li>
+            <li id="navLi"><a id="navA" href="DBA.php">DBA</a></li>
             <li id="navLi"><a id="navA" href="account.php">Account</a></li>
             <li id="navLi"><a id="navA" href="about.php">About</a></li>
-            <li id="navLi"><a id="navA" href="signup.php">Signup</a></li>
-            <li id="navLi"><a id="navA" href="login.php">Login</a></li>
+
+            <li id="navLi"><a id="navA" href="browse.php">Browse</a></li>
+
+            
         </ul>
     </nav>
 </header>
@@ -169,7 +171,7 @@ if(isset($_POST['submit']))
               
               echo"
               <form method=\"POST\">
-                <input type=\"submit\" name = \"order\" value=\"order\" id=\"submit\">
+                <input style = \"height: 50px; width: 45px;\" type=\"submit\" name = \"order\" value=\"order\" id=\"submit\">
               </form>
                 
                 ";

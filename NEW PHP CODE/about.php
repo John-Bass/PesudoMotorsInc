@@ -15,11 +15,9 @@
         <ul id="navUl">
             <li id="navLi"><a id="navA" href="index.php">Home</a></li>
             <li id="navLi"><a id="navA" href="browse.php">Browse</a></li>
-            <li id="navLi"><a id="navA" href="cart.php">Cart</a></li>
+            <li id="navLi"><a id="navA" href="DBA.php">DBA</a></li>
             <li id="navLi"><a id="navA" href="account.php">Account</a></li>
-            <li id="navLi"><a id="navA" href="about.php">About</a></li>
-            <li id="navLi"><a id="navA" href="signup.php">Signup</a></li>
-            <li id="navLi"><a id="navA" href="login.php">Login</a></li>
+        
         </ul>
     </nav>
 </header>
